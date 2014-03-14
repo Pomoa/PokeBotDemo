@@ -1,34 +1,52 @@
 package fr.univaix.iut.pokebattle.bot;
 
-import fr.univaix.iut.pokebattle.smartcell.PokemonCriesCell;
+import fr.univaix.iut.pokebattle.smartcell.HelloCell;
+import fr.univaix.iut.pokebattle.smartcell.OwnerCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 public class PokeBot implements Bot {
-    /**
-     * List of smartcell the questions go through to
-     * find an answer.
-     */
-    private final SmartCell[] smartCells = new SmartCell[]{
-            new PokemonCriesCell(),
-    };
+    private String eleveur;
+    
 
-    /**
-     * Ask something to Bot, it will respond to you.
-     *
-     * @param question The question you ask.
-     * @return An answer... or null if it doesn't get it.
-     */
-    @Override
+    
+    
+    public PokeBot (String eleveur){
+       this.eleveur = eleveur;
+    }
+
+    public String getEleveur() {
+        return eleveur;
+    }
+
+    public void setEleveur(String eleveur) {
+        this.eleveur = eleveur;
+    }
+    
+    final SmartCell[] smartCells = new SmartCell[] {
+		new HelloCell(),
+		new OwnerCell()
+	};
+    
     public String ask(Tweet question) {
-        for (SmartCell cell : smartCells) {
-            String answer = cell.ask(question);
-            if (answer != null) {
-                return answer;
+        
+        String answer = "";
+        PokeBot abo = new PokeBot(this.eleveur); 
+            for(SmartCell cell:smartCells) {
+                
+                if (cell.ask(question, abo) != null)
+                    answer = answer + cell.ask(question, abo) + " ";
+              
             }
-        }
-        return null;
+       if ("".equals(answer)){
+           answer = "I don't understand your question.";
+       }
+       else{
+           answer = answer.substring(0, answer.length()-1);
+       }
+       
+       return answer;
     }
 
 }

@@ -1,5 +1,6 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+import fr.univaix.iut.pokebattle.bot.PokeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public interface SmartCell {
@@ -10,5 +11,5 @@ public interface SmartCell {
      * @return the answer when the Cell can reply to the question
      *         or null.
      */
-    String ask(Tweet question);
+    String ask(Tweet question, PokeBot abo);
 }

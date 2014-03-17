@@ -24,11 +24,11 @@ public class OwnerCell implements SmartCell {
             
             if( abo.getEleveur() != null)
             {
-               String answer = "My owner is @" + abo.getEleveur() + ".";
+               String answer = "@" + question.getScreenName() + " My owner is @" + abo.getEleveur() + ".";
                return answer;
             }
             else {
-                return "I don't have owner.";
+                return "@" + question.getScreenName() + " I don't have owner.";
             }
         }
         return null;

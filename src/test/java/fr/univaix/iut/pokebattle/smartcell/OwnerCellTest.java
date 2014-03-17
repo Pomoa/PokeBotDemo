@@ -16,14 +16,14 @@ public class OwnerCellTest {
     public void testAskNoOwner() throws CloneNotSupportedException {
         
         pokeBot = new PokeBot(null);
-        assertEquals("I don't have owner.", pokeBot.ask(new Tweet("Do you have an owner ?")));
+        assertEquals("@Tristan I don't have owner.", pokeBot.ask(new Tweet("Tristan", "Do you have an owner ?")));
 
     }
     
     @Test
     public void testASkOwner() throws CloneNotSupportedException {
         pokeBot = new PokeBot("CaptainObvious");
-        assertEquals("My owner is @CaptainObvious.", pokeBot.ask(new Tweet("Do you have an owner ?")));
+        assertEquals("@Tristan My owner is @CaptainObvious.", pokeBot.ask(new Tweet("Tristan", "Do you have an owner ?")));
 
     }
 

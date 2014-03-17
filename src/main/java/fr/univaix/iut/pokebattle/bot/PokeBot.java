@@ -40,7 +40,7 @@ public class PokeBot implements Bot {
               
             }
        if ("".equals(answer)){
-           answer = "I don't understand your question.";
+           answer = "@" + question.getScreenName() + " I don't understand your question.";
        }
        else{
            answer = answer.substring(0, answer.length()-1);

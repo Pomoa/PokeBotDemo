@@ -13,15 +13,15 @@ public class Tweet {
         this.screenName = screenName;
         this.text = text;
         
-        for (int i = 0, p=0 ; i < text.length() -1 ; i++, p++) {// parcours le tweet
+        for (int i = 0, p = 0 ; i < text.length() -1 ; i++, p++) {// parcours le tweet
         	if (text.charAt(i) == '#') 							// s'arrete si il croise un hashtag
         	{
         		i++;
-        		Character car = text.charAt(i);
+        		char car = text.charAt(i);
         		for ( ; Character.isLetterOrDigit(car) ; )		 // vérifie si le caractere met fin au hashtag
         		{
         			hashTag[p] += car; 
-        			car = text.charAt(++i);	
+        			car = text.charAt(++i);
         		}  
         	}        	
         	

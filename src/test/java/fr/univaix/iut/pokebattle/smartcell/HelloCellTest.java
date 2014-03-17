@@ -16,7 +16,7 @@ public class HelloCellTest {
     public void testAskHelloFromFollower() throws CloneNotSupportedException {
         
         pokeBot = new PokeBot(null);
-        assertEquals("Hi @Tristan, I am Abo.", pokeBot.ask(new Tweet("Tristan", "Hi, how are you ?")));
+        assertEquals("@Tristan Hi @Tristan, I am Abo.", pokeBot.ask(new Tweet("Tristan", "Hi, how are you ?")));
 
     }
     

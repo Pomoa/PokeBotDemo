@@ -8,18 +8,21 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  */
 
 public class CatchPokemonCell implements SmartCell{
+	public CatchPokemonCell(){
+		
+	}
 	public String ask(Tweet question, PokeBot abo){
 		String asking = question.getText().toUpperCase();
-		if(asking.contains("POKEBALL!"))
+		if(asking.contains("POKEBALL !"))
 		{
 			if(abo.getEleveur() == null)
 			{
 				abo.setEleveur(question.getScreenName());
-				return "@AboHotel @" + abo.getEleveur() + " is my owner now";
+				return "@" + question.getScreenName() + " @" + abo.getEleveur() + " is my owner now.";
 			}
 			else 
 			{
-				return "@AboHotel My owner is @" + abo.getEleveur();
+				return "@" + question.getScreenName() + " My owner is @" + abo.getEleveur() + ".";
 			}
 		}
 		return null;

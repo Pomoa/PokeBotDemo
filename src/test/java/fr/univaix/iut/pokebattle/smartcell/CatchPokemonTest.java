@@ -13,13 +13,13 @@ public class CatchPokemonTest {
 	public void TestCatchWithoutEleveur(){
 		PokeBot pokeBot = new PokeBot(null);
 		
-		assertEquals("@AboHotel @CaptainObvious is my owner now", cell.ask(new Tweet ("CaptainObvious","POKEBALL!"), pokeBot));
+		assertEquals("@CaptainObvious @CaptainObvious is my owner now.", cell.ask(new Tweet ("CaptainObvious","POKEBALL !"), pokeBot));
 	}
 	
 	@Test
 	public void TestCatchWithEleveur(){
-		PokeBot pokeBot = new PokeBot("@CaptainObvious");
+		PokeBot pokeBot = new PokeBot("Jacky");
 		
-		assertEquals("@AboHotel My owner is @" + pokeBot.getEleveur(), cell.ask(new Tweet("Jacky", "POKEBALL!"), pokeBot));
+		assertEquals("@CaptainObvious My owner is @Jacky.", cell.ask(new Tweet("CaptainObvious", "POKEBALL !"), pokeBot));
 	}
 }

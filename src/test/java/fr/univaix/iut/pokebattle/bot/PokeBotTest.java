@@ -1,6 +1,7 @@
 package fr.univaix.iut.pokebattle.bot;
 
 import fr.univaix.iut.pokebattle.twitter.Tweet;
+
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -46,6 +47,22 @@ public class PokeBotTest {
 
     }
     
+    
+	/**@Test
+	public void TestCatchWithoutEleveur(){
+		PokeBot pokeBot = new PokeBot(null);
+		
+		assertEquals("@CaptainObvious @CaptainObvious is my owner now.", pokeBot.ask(new Tweet ("CaptainObvious","POKEBALL !")));
+	}
+	
+	@Test
+	public void TestCatchWithEleveur(){
+		PokeBot pokeBot = new PokeBot("Jacky");
+		
+		assertEquals("@CaptainObvious My owner is @Jacky.", pokeBot.ask(new Tweet("CaptainObvious", "POKEBALL !")));
+	}**/
+	
+	
     @Test
     public void testNoQuestion() throws CloneNotSupportedException {
         pokeBot = new PokeBot("CaptainObvious");

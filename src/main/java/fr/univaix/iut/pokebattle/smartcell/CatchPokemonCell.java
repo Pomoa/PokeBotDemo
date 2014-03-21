@@ -18,11 +18,11 @@ public class CatchPokemonCell implements SmartCell{
 			if(abo.getEleveur() == null)
 			{
 				abo.setEleveur(question.getScreenName());
-				return "@" + question.getScreenName() + " @" + abo.getEleveur() + " is my owner now.";
+				return "@" + abo.getEleveur() + " is my owner now";
 			}
 			else 
 			{
-				return "@" + question.getScreenName() + " My owner is @" + abo.getEleveur() + ".";
+				return "I already have an owner is name is @" + abo.getEleveur();
 			}
 		}
 		return null;

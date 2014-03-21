@@ -13,7 +13,7 @@ public class Tweet {
         this.screenName = screenName;
         this.text = text;
         
-        for (int i = 0, p = 0 ; i < text.length() -1 ; i++, p++) {// parcours le tweet
+        /*for (int i = 0, p = 0 ; i < text.length() -1 ; i++, p++) {// parcours le tweet
         	if (text.charAt(i) == '#') 							// s'arrete si il croise un hashtag
         	{
         		i++;
@@ -25,7 +25,7 @@ public class Tweet {
         		}  
         	}        	
         	
-        }
+        }*/
     }
 
     public String getScreenName() {

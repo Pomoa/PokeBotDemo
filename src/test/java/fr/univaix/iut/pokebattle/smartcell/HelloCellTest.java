@@ -9,22 +9,20 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class HelloCellTest {
 	
-    PokeBot pokeBot;
+	HelloCell cell = new HelloCell();
     
     
     @Test
     public void testAskHelloFromFollower() throws CloneNotSupportedException {
-        
-        pokeBot = new PokeBot(null);
-        assertEquals("@Tristan Hi @Tristan, I am Abo.", pokeBot.ask(new Tweet("Tristan", "Hi, how are you ?")));
+
+        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi, how are you ?"), new PokeBot(null)));
 
     }
     
     @Test
     public void testAskHelloFromNoOne() throws CloneNotSupportedException {
         
-        pokeBot = new PokeBot(null);
-        assertEquals("Hi, I am Abo.", pokeBot.ask(new Tweet("Hi, how are you ?")));
+        assertEquals("Hi, I am Abo.", cell.ask(new Tweet("Hi, how are you ?"), new PokeBot(null)));
 
     }
 

@@ -9,21 +9,20 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class OwnerCellTest {
 
-    PokeBot pokeBot;
+	OwnerCell cell = new OwnerCell();
 
     
     @Test
     public void testAskNoOwner() throws CloneNotSupportedException {
         
-        pokeBot = new PokeBot(null);
-        assertEquals("@Tristan I don't have owner.", pokeBot.ask(new Tweet("Tristan", "Do you have an owner ?")));
+        
+        assertEquals("@Tristan I don't have owner.", cell.ask(new Tweet("Tristan", "Do you have an owner ?"), new PokeBot(null)));
 
     }
     
     @Test
     public void testASkOwner() throws CloneNotSupportedException {
-        pokeBot = new PokeBot("CaptainObvious");
-        assertEquals("@Tristan My owner is @CaptainObvious.", pokeBot.ask(new Tweet("Tristan", "Do you have an owner ?")));
+        assertEquals("@Tristan My owner is @CaptainObvious.", cell.ask(new Tweet("Tristan", "Do you have an owner ?"), new PokeBot("CaptainObvious")));
 
     }
 

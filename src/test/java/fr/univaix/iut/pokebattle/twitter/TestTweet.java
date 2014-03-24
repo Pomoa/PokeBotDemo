@@ -23,5 +23,9 @@ public class TestTweet {
     	assertEquals("nedseb", tweet.getScreenName());
     	assertEquals("gentil", tweet.getHashTag(0));
     	assertEquals("bonjour", tweet.getHashTag(1));
+    	Tweet tweet2 = new Tweet("Ca marche #Yosh #Yata");
+    	assertEquals("Yosh", tweet2.getHashTag(0));
+    	assertEquals("Yata", tweet2.getHashTag(1));
+    	
     }
 }

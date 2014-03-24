@@ -13,16 +13,16 @@ public class CatchPokemonCell implements SmartCell{
 	}
 	public String ask(Tweet question, PokeBot abo){
 		String asking = question.getText().toUpperCase();
-		if(asking.contains("POKEBALL !"))
+		if(asking.contains("POKEBALL"))
 		{
 			if(abo.getEleveur() == null)
 			{
 				abo.setEleveur(question.getScreenName());
-				return "@" + abo.getEleveur() + " is my owner now";
+				return "@" + abo.getEleveur() + " is now my owner.";
 			}
 			else 
 			{
-				return "I already have an owner is name is @" + abo.getEleveur();
+				return "I already have an owner is name is @" + abo.getEleveur() + ".";
 			}
 		}
 		return null;

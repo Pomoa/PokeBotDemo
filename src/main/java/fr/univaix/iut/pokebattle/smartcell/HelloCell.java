@@ -28,7 +28,7 @@ public class HelloCell implements SmartCell {
     }
 
 	private boolean containsHello(String asking) {
-		if (asking.contains("HELLO ") || asking.contains("HELLO,") || asking.contains("HELLO.") || asking.contains("HELLO!") || asking.contains("HELLO !") || asking.contains("HI ") || asking.contains("HI,") || asking.contains("HI.") || asking.contains("HI!") || asking.contains("HI !") || asking == "HELLO"){
+		if (asking.contains("HELLO") || asking.contains("HI ") || asking.contains("HI,") || asking.contains("HI.") || asking.contains("HI!") || asking.contains("HI !") || asking.equals("HI")){
 			return true;
 		}
 		return false;

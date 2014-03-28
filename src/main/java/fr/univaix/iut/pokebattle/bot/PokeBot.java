@@ -1,5 +1,9 @@
 package fr.univaix.iut.pokebattle.bot;
 
+import twitter4j.Twitter;
+import twitter4j.TwitterException;
+import twitter4j.TwitterFactory;
+import twitter4j.conf.ConfigurationBuilder;
 import fr.univaix.iut.pokebattle.smartcell.AskSpecificationsCell;
 import fr.univaix.iut.pokebattle.smartcell.CatchPokemonCell;
 import fr.univaix.iut.pokebattle.smartcell.HelloCell;
@@ -19,6 +23,23 @@ public class PokeBot implements Bot {
        this.m_nbPv = 100;
        this.m_level = 1;
        this.m_XP = 0;
+       this.changeBio();
+    }
+    
+    private void changeBio(){
+    	ConfigurationBuilder cb = new ConfigurationBuilder();
+    	cb.setDebugEnabled(true);
+    	cb.setOAuthConsumerKey("L3TGAaeq6Ni6Cd0PDD13UA");
+    	cb.setOAuthConsumerSecret("MvvYMza3PXqwvgwINyx7fV3tB3m5r0pdpwy3wNdI8");
+    	cb.setOAuthAccessToken("2362514731-F4nxaicaGTQkXnIygS1LSH4fERT2KeLkGG8vPkT");
+    	cb.setOAuthAccessTokenSecret("pp2KWq1XvNlVIFJ7MEiJpW7Mhk76UXMthvUNIWM6IAaeA");
+    	TwitterFactory tf = new TwitterFactory(cb.build());
+    	Twitter twitter = tf.getInstance();
+    	try {
+			twitter.updateProfile("AboHotel","https://twitter.com/AboHotelBis","Route 32, Johto","#pokebattle - #pokemon - Owner: @" + this.getEleveur());
+		} catch (TwitterException e) {
+			e.printStackTrace();
+		}
     }
 
     public int getNbPv(){

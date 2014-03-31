@@ -12,7 +12,7 @@ public class HelloCell implements SmartCell {
     @Override
     public String ask(Tweet question, PokeBot abo) {
         String asking = question.getText().toUpperCase();
-        if(asking.contains("HELLO ") || asking.contains("HELLO,") || asking.contains("HELLO.") || asking.contains("HELLO!") || asking.contains("HELLO !") || asking.contains("HI ") || asking.contains("HI,") || asking.contains("HI.") || asking.contains("HI!") || asking.contains("HI !")){
+        if(containsHello(asking)){
             if (question.getScreenName() != null) {
                     return "@" + question.getScreenName() + " Hi @" + question.getScreenName() + ", I am Abo.";  
             }
@@ -22,6 +22,13 @@ public class HelloCell implements SmartCell {
         }
         return null;
     }
+
+	private boolean containsHello(String asking) {
+		if (asking.contains("HELLO") || asking.contains("HI ") || asking.contains("HI,") || asking.contains("HI.") || asking.contains("HI!") || asking.contains("HI !") || asking.equals("HI")){
+			return true;
+		}
+		return false;
+	}
     
 
    

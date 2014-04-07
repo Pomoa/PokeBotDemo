@@ -15,28 +15,28 @@ public class HelloCellTest {
     @Test
     public void testAskHelloFromFollower() throws CloneNotSupportedException {
 
-        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi, how are you ?"), new PokeBot(null)));
+        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi, how are you ?")));
 
     }
     
     @Test
     public void testAskJustHelloFromFollower() throws CloneNotSupportedException {
 
-        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hello"), new PokeBot(null)));
+        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hello")));
 
     }
     
     @Test
     public void testAskJustHiFromFollower() throws CloneNotSupportedException {
 
-        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi"), new PokeBot(null)));
+        assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi")));
 
     }
     
     @Test
     public void testAskHelloFromNoOne() throws CloneNotSupportedException {
         
-        assertEquals("Hi, I am Abo.", cell.ask(new Tweet("Hi, how are you ?"), new PokeBot(null)));
+        assertEquals("Hi, I am Abo.", cell.ask(new Tweet("Hi, how are you ?")));
 
     }
 

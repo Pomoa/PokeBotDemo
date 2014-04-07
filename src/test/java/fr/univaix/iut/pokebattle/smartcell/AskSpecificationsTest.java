@@ -11,8 +11,8 @@ public class AskSpecificationsTest {
 	
 	@Test
 	public void TestAskPV(){
-		PokeBot pokeBot = new PokeBot(null);
+		PokeBot pokeBot = new PokeBot();
 		
-		assertEquals("#level = 1", cell.ask(new Tweet("CaptainObvious", "@AboHotel #stat #level"), pokeBot));
+		assertEquals("#level = 1", cell.ask(new Tweet("CaptainObvious", "@AboHotel #stat #level")));
 	}
 }

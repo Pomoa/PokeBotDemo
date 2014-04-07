@@ -23,7 +23,7 @@ public class JudgeBot implements Bot {
     @Override
     public String ask(Tweet question) {
         for (SmartCell cell : smartCells) {
-            String answer = cell.ask(question, null);
+            String answer = cell.ask(question);
             if (answer != null) {
                 return answer;
             }

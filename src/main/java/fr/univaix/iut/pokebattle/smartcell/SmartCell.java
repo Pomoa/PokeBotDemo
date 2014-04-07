@@ -11,5 +11,5 @@ public interface SmartCell {
      * @return the answer when the Cell can reply to the question
      *         or null.
      */
-    String ask(Tweet question, PokeBot abo);
+    String ask(Tweet question);
 }

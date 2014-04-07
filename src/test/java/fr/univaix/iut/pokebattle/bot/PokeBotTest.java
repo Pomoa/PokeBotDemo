@@ -18,7 +18,7 @@ public class PokeBotTest {
     @Test
     public void testAskHelloFromFollower() throws CloneNotSupportedException {
         
-        pokeBot = new PokeBot(null);
+        pokeBot = new PokeBot();
         assertEquals("@Tristan Hi @Tristan, I am Abo.", pokeBot.ask(new Tweet("Tristan", "Hi, how are you ?")));
 
     }
@@ -26,7 +26,7 @@ public class PokeBotTest {
     @Test
     public void testAskHelloFromNoOne() throws CloneNotSupportedException {
         
-        pokeBot = new PokeBot(null);
+        pokeBot = new PokeBot();
         assertEquals("Hi, I am Abo.", pokeBot.ask(new Tweet("Hi, how are you ?")));
 
     }
@@ -35,14 +35,14 @@ public class PokeBotTest {
     @Test
     public void testAskNoOwner() throws CloneNotSupportedException {
         
-        pokeBot = new PokeBot(null);
+        pokeBot = new PokeBot();
         assertEquals("@Tristan I don't have owner.", pokeBot.ask(new Tweet("Tristan", "Do you have an owner ?")));
 
     }
     
     @Test
     public void testASkOwner() throws CloneNotSupportedException {
-        pokeBot = new PokeBot("CaptainObvious");
+        pokeBot = new PokeBot();
         assertEquals("@Tristan My owner is @CaptainObvious.", pokeBot.ask(new Tweet("Tristan","Do you have an owner ?")));
 
     }
@@ -65,7 +65,7 @@ public class PokeBotTest {
 	
     @Test
     public void testNoQuestion() throws CloneNotSupportedException {
-        pokeBot = new PokeBot("CaptainObvious");
+        pokeBot = new PokeBot();
         assertEquals("@Tristan I don't understand your question.", pokeBot.ask(new Tweet("Tristan", "This is not a question")));
 
     }

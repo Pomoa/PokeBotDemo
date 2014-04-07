@@ -10,16 +10,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class OwnerCell implements SmartCell {
 
-    public OwnerCell() {
-    }
-
-    /**
-     *
-     * @param question
-     * @param abo
-     * @return
-     */
-    
+    public OwnerCell() { }
 
     @Override
     public String ask(Tweet question) {
@@ -32,21 +23,18 @@ public class OwnerCell implements SmartCell {
         pokemon = daopok.getById("AboHotelBis");
         
         String asking = question.getText().toUpperCase();
-        if(asking.contains("OWNER")){
-        	
+        if (asking.contains("OWNER")) {
+            if (pokemon.getOwner() != null) {
+               String answer = "@" + question.getScreenName()
+                       + " My owner is @"
+                       + pokemon.getOwner() + ".";
 
-            
-            if( pokemon.getOwner() != null)
-            {
-               String answer = "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
+               
                return answer;
-            }
-            else {
+            } else {
                 return "@" + question.getScreenName() + " I don't have owner.";
             }
         }
         return null;
     }
-
-    
 }

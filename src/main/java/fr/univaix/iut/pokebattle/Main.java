@@ -1,14 +1,10 @@
 package fr.univaix.iut.pokebattle;
 
-import java.util.Collection;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class Main {
-
-	private static Collection<Attaque> attaques;
 
 	public static void createDatabase() {
 

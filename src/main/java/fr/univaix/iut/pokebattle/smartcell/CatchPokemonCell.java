@@ -1,4 +1,4 @@
-package fr.univaix.iut.pokebattle.smartcell;
+ package fr.univaix.iut.pokebattle.smartcell;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,8 +10,9 @@ import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 /* Classe qui permet d'attraper un pokémon si celui-ci n'a pas
- * déja un dresseur. Il renvoie le nom de son éleveur dans tous les cas 
+ * déja un dresseur. Il renvoie le nom de son éleveur dans tous les cas
  */
+
 
 public class CatchPokemonCell implements SmartCell{
 	public CatchPokemonCell(){
@@ -45,5 +46,4 @@ public class CatchPokemonCell implements SmartCell{
 		}
 		return null;
 	}
-	
 }

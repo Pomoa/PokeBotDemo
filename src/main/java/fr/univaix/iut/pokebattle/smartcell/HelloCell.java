@@ -8,10 +8,6 @@ import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-
-
-
-
 public class HelloCell implements SmartCell {
 
     
@@ -32,27 +28,26 @@ public class HelloCell implements SmartCell {
         pokemon = daopok.getById("AboHotelBis");
         
         String asking = question.getText().toUpperCase();
-        if(containsHello(asking)){
-        
-	        
+        if (containsHello(asking)) {
             if (question.getScreenName() != null) {
-                    return "@" + question.getScreenName() + " Hi @" + question.getScreenName() + ", I am "+ pokemon.getName() +".";  
-            }
-            else{
-                return "Hi, I am " + question.getScreenName() + ".";
+                return "@" + question.getScreenName()
+                       + " Hi @" + question.getScreenName()
+                       + ", I am " + pokemon.getName();
+            } else {
+                return "Hi, I am " + pokemon.getName();
             }
         }
         return null;
+
     }
 
-	private boolean containsHello(String asking) {
-		if (asking.contains("HELLO") || asking.contains("HI ") || asking.contains("HI,") || asking.contains("HI.") || asking.contains("HI!") || asking.contains("HI !") || asking.equals("HI")){
-			return true;
-		}
-		return false;
-	}
-    
-
-   
-
+    private boolean containsHello(final String asking) {
+        if (asking.contains("HELLO") || asking.contains("HI ")
+            || asking.contains("HI,") || asking.contains("HI.")
+            || asking.contains("HI!") || asking.contains("HI !")
+            || asking.equals("HI")) {
+            return true;
+        }
+        return false;
+    }
 }

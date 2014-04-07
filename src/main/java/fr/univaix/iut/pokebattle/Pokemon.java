@@ -1,6 +1,6 @@
 package fr.univaix.iut.pokebattle;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -26,7 +26,7 @@ public class Pokemon {
     private String Name;
 
     @ManyToMany
-    private Collection<Attaque> attaques;
+    private List<Attaque> attaques;
     
     
     private String Type1;
@@ -87,11 +87,11 @@ public class Pokemon {
         return Cry;
     }
 
-    public Collection<Attaque> getAttaques() {
+    public List<Attaque> getAttaques() {
 		return attaques;
 	}
 
-	public void setAttaques(Collection<Attaque> attaques) {
+	public void setAttaques(List<Attaque> attaques) {
 		this.attaques = attaques;
 	}
 

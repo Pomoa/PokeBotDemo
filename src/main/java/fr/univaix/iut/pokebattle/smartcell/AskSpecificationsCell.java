@@ -36,7 +36,6 @@ public class AskSpecificationsCell implements SmartCell{
 		}
 		else{
 	        
-			System.out.println(pokemon.getLevel());
 			return null;
 		}
 	}

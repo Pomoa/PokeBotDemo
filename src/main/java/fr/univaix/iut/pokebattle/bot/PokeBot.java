@@ -35,17 +35,7 @@ public class PokeBot implements Bot {
 		};
 	
 	}
-
-	EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("pokebattlePU");
-	EntityManager em = emf.createEntityManager();
-	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
-	DAOPokemonJPA daoBotJPA = new DAOPokemonJPA(em);
-
 	
-	Pokemon bot = daoBotJPA.getById("AboHotelBis");
-    
-    
    /** final SmartCell[] smartCells = new SmartCell[] {
 		new HelloCell(),
 		new OwnerCell(),

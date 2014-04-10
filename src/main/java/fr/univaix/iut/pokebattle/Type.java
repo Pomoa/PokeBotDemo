@@ -1,7 +1,7 @@
 package fr.univaix.iut.pokebattle;
 
 public enum Type {
-	
+
     NORMAL,
     FIRE,
     FIGHTING,
@@ -19,5 +19,4 @@ public enum Type {
     GHOST,
     DARK,
     STEEL
-
 }

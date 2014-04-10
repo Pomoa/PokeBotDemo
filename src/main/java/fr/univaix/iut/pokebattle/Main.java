@@ -44,7 +44,6 @@ public class Main {
 		pok.setType1(Type.POISON);
 		pok.setColor("Violet");
 		pok.setOwner(null);
-		pok.setNum(023);
 		pok.setXP(0);
 		pok.setLevel(1);
 		pok.setPVMax(30);

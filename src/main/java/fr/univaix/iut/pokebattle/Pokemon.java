@@ -11,6 +11,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 
+
+
 @Entity
 @NamedQueries({
         @NamedQuery(name = Pokemon.FIND_ALL, query = "SELECT p FROM Pokemon p"),
@@ -32,6 +34,7 @@ public class Pokemon {
     private List<Attaque> attaques;
     
     
+
     @Enumerated(EnumType.STRING)
     private Type type1;
 
@@ -58,8 +61,10 @@ public class Pokemon {
     private String Color;
     private String Owner;
 
-    private int Num;
-    private int XP;
+
+
+
+	private int XP;
     private int Level;
     private int PVMax;
     private int PVNow;
@@ -84,10 +89,32 @@ public class Pokemon {
     // Getteurs & Setteurs
 
 
-
-
-    public List<Attaque> getAttaques() {
+	public List<Attaque> getAttaques() {
 		return attaques;
+	}
+
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public int getPVMax() {
+		return PVMax;
+	}
+
+	public void setPVMax(int pVMax) {
+		PVMax = pVMax;
+	}
+
+	public int getPVNow() {
+		return PVNow;
+	}
+
+	public void setPVNow(int pVNow) {
+		PVNow = pVNow;
 	}
 
 	public void setAttaques(List<Attaque> attaques) {
@@ -95,40 +122,13 @@ public class Pokemon {
 	}
 
 
-
     public String getOwner() {
-        return Owner;
-    }
+		return Owner;
+	}
 
-    public void setOwner(String Owner) {
-        this.Owner = Owner;
-    }
-
-    public int getPVMax() {
-        return PVMax;
-    }
-
-    public void setPVMax(int pVMax) {
-    	PVMax = pVMax;
-    }
-
-    public int getPVNow() {
-        return PVNow;
-    }
-
-    public void setPVNow(int pVNow) {
-    	PVNow = pVNow;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-    	Name = name;
-    }
-
-
+	public void setOwner(String owner) {
+		Owner = owner;
+	}
 
     public String getColor() {
         return Color;
@@ -138,13 +138,7 @@ public class Pokemon {
     	Color = color;
     }
 
-    public int getNum() {
-        return Num;
-    }
 
-    public void setNum(int num) {
-        Num = num;
-    }
 
     public int getXP() {
         return XP;
@@ -182,7 +176,7 @@ public class Pokemon {
     @Override
     public String toString() {
         return "Pokemon [Nom=" + Name + ", Type1=" + type1 + ", Type2=" + type2 + ", Couleur=" + Color
-                + ", Eleveur=" + Owner +", Num="+ Num + ", Experience=" + XP
+                + ", Eleveur=" + Owner + ", Experience=" + XP
                 + ", Niveau=" + Level + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
                 + ", Taille=" + Height + ", Poid="
                 + Weight + "]";

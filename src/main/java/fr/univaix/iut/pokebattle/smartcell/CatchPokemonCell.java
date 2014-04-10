@@ -34,13 +34,13 @@ public class CatchPokemonCell implements SmartCell{
 	        if (pokemon.getOwner() == null) {
 	        	pokemon.setOwner(question.getScreenName());
 	        	DAO.update(pokemon);
-	        	return "@" + pokemon.getOwner() + " is now my owner.";
+	        	return "@" + question.getScreenName() + " You are now my owner.";
 	        	
 	        }
 
 			else 
 			{
-				return "I already have an owner is name is @" + pokemon.getOwner() + ".";
+				return "@" + question.getScreenName() + "I already have an owner is name is @" + pokemon.getOwner() + ".";
 			}
 		}
 		return null;

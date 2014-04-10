@@ -1,10 +1,7 @@
 <dataset>
-    <Pokemon Nom="AboHotelBis" Type1="POISON" Type2="bull" Caractere="Malsain" Couleur="Rose bonbon" Eleveur="@PoussinPiot" Evolution="Flagadoss"
-	Prevolution="null" Cri="Ramo-Ramoloss" Num="123" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Attaque="10" Taille="41" Poid="40"/>
-	
-	<Pokemon Nom="@MagicarpePiot" Type1="eau" Type2="null" Caractere="Fou" Couleur="Orange corail" Eleveur="null" Evolution="Leviator"
-	Prevolution="null" Cri="Carpe Carpe Magicarpe" Num="146" Experience="0" Niveau="1" VieMax="100" VieActuel="100" Attaque="10" Taille="15" Poid="3"/>
-	
-	<Pokemon Nom="@PsykokwakPiot" Type1="eau" Type2="psy" Caractere="Vicieux" Couleur="Jaune" Eleveur="@SpaceDuck_42" Evolution="Aquakwak"
-	Prevolution="null" Cri="Psyko ... kwak ?" Num="054" Experience="0" Niveau="1" VieMax="100" VieActuel="100" Attaque="10" Taille="15" Poid="3"/>
+    <POKEMON Nom="AboHotelBis" Type1="POISON" Type2="null" Couleur="Violet" 
+    Eleveur="null" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Taille="41" Poid="40"/>
+    
+    <POKEMON Nom="Rattata" Type1="NORMAL" Type2="null" Couleur="Gris" 
+    Eleveur="null" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Taille="41" Poid="40"/>
 </dataset>

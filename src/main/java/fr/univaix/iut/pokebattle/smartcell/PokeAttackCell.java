@@ -1,13 +1,17 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+import fr.univaix.iut.pokebattle.DAOFactoryJPA;
+import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class PokeAttackCell {
 
-    public PokeAttackCell(final Object object) { }
 
-    public final String ask(final Tweet tweet, final Pokemon poke) {
+    public  String ask(final Tweet tweet) {
+        DAOPokemon DAO = DAOFactoryJPA.createDAOPokemon();
+        Pokemon poke = DAO.getById("AboHotelBis");
+        
         if (poke.getOwner() != tweet.getScreenName()) {
         	return "Sorry, you're not my owner. My owner is " + poke.getOwner();
         } else {

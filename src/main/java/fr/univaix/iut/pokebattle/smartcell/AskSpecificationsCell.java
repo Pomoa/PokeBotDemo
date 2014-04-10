@@ -5,6 +5,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import fr.univaix.iut.pokebattle.DAOFactoryJPA;
+import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -14,12 +16,8 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class AskSpecificationsCell implements SmartCell{
 	public String ask(Tweet question){
 		
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
-    	EntityManager em = emf.createEntityManager();
-    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
-    	Pokemon pokemon = new Pokemon();
-        pokemon = daopok.getById("AboHotelBis");
+        DAOPokemon DAO = DAOFactoryJPA.createDAOPokemon();
+        Pokemon pokemon = DAO.getById("AboHotelBis");
         
 		String asking = question.getText();
 

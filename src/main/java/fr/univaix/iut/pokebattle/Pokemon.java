@@ -3,6 +3,8 @@ package fr.univaix.iut.pokebattle;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -12,9 +14,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Pokemon.FIND_ALL, query = "SELECT p FROM Pokemon p"),
-        @NamedQuery(name = Pokemon.FIND_BY_TYPE, query = "SELECT p FROM Pokemon p WHERE p.Type1 = :ftype OR p.Type2 = :ftype"),
-        @NamedQuery(name = Pokemon.FIND_BY_NOM, query = "SELECT p FROM Pokemon p WHERE p.Name = :fnom")
-}) 
+        @NamedQuery(name = Pokemon.FIND_BY_NOM, query = "SELECT p FROM Pokemon p WHERE p.Name = :fnom"),
+        @NamedQuery(name = Pokemon.FIND_BY_TYPE, query = "SELECT p FROM Pokemon p WHERE p.type1 = :ftype")
+        })
+ 
 
 public class Pokemon {
 
@@ -29,33 +32,31 @@ public class Pokemon {
     private List<Attaque> attaques;
     
     
-    private String Type1;
+    @Enumerated(EnumType.STRING)
+    private Type type1;
 
-    public String getType1() {
-		return Type1;
-	}
+    @Enumerated(EnumType.STRING)
+    private Type type2;
 
-	public void setType1(String type1) {
-		Type1 = type1;
-	}
+    public Type getType1() {
+        return type1;
+    }
 
-	public String getType2() {
-		return Type2;
-	}
+    public void setType1(Type types1) {
+        this.type1 = types1;
+    }
 
-	public void setType2(String type2) {
-		Type2 = type2;
-	}
+    public Type getType2() {
+        return type2;
+    }
 
-	/* @Enumerated(EnumType.STRING) */
-    private String Type2;
+    public void setType2(Type types2) {
+        this.type2 = types2;
+    }
 
-    private String Charac;
+
     private String Color;
     private String Owner;
-    private String Evolution;
-    private String Prevolution;
-    private String Cry;
 
     private int Num;
     private int XP;
@@ -83,9 +84,7 @@ public class Pokemon {
     // Getteurs & Setteurs
 
 
-    public String getCry() {
-        return Cry;
-    }
+
 
     public List<Attaque> getAttaques() {
 		return attaques;
@@ -95,9 +94,7 @@ public class Pokemon {
 		this.attaques = attaques;
 	}
 
-	public void setCry(String cry) {
-        this.Cry = cry;
-    }
+
 
     public String getOwner() {
         return Owner;
@@ -131,21 +128,7 @@ public class Pokemon {
     	Name = name;
     }
 
-    public String getType() {
-        return Type1;
-    }
 
-    public void setType(String type) {
-        Type1 = type;
-    }
-
-    public String getCharac() {
-        return Charac;
-    }
-
-    public void setCharac(String charac) {
-    	Charac = charac;
-    }
 
     public String getColor() {
         return Color;
@@ -179,21 +162,6 @@ public class Pokemon {
     	Level = level;
     }
 
-    public String getEvolution() {
-        return Evolution;
-    }
-
-    public void setEvolution(String evolution) {
-        this.Evolution = evolution;
-    }
-
-    public String getPrevolution() {
-        return Prevolution;
-    }
-
-    public void setPrevolution(String prevolution) {
-        this.Prevolution = prevolution;
-    }
 
     public float getHeight() {
         return Height;
@@ -213,12 +181,9 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon [Nom=" + Name + ", Type1=" + Type1 + ", Type2=" + Type2
-                + ", Caractere=" + Charac + ", Couleur=" + Color
-                + ", Eleveur=" + Owner + ", Evolution=" + Evolution
-                + ", Prevolution=" + Prevolution + ", Cri=" + Cry + ", Num="
-                + Num + ", Experience=" + XP + ", Niveau=" + Level
-                + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
+        return "Pokemon [Nom=" + Name + ", Type1=" + type1 + ", Type2=" + type2 + ", Couleur=" + Color
+                + ", Eleveur=" + Owner +", Num="+ Num + ", Experience=" + XP
+                + ", Niveau=" + Level + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
                 + ", Taille=" + Height + ", Poid="
                 + Weight + "]";
     }

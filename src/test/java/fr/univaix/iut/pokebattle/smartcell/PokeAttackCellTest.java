@@ -8,7 +8,7 @@ import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class PokeAttackCellTest {
-    PokeAttackCell cell = new PokeAttackCell(null);
+    PokeAttackCell cell = new PokeAttackCell();
     Pokemon poke = new Pokemon();
 
     @Test
@@ -16,7 +16,7 @@ public class PokeAttackCellTest {
         Tweet tweet = new Tweet(poke.getOwner(),
         "@abohotelbis #attack #ligotage @pika /cc @thepomoaa");
         assertEquals("@pika #attack #ligotage /cc @thepomoaa @" + poke.getOwner(),
-                cell.ask(tweet, poke));
+                cell.ask(tweet));
     }
 
     @Test
@@ -24,20 +24,20 @@ public class PokeAttackCellTest {
         Tweet tweet = new Tweet("nedseb",
                 "@abohotelbis #attack #ligotage @pika");
         assertEquals("Sorry, you're not my owner. My owner is " + poke.getOwner(),
-                cell.ask(tweet, poke));
+                cell.ask(tweet));
     }
 
     @Test
     public final void test3() {
         Tweet tweet = new Tweet("nedseb", "@abohotelbis #coucou");
         assertEquals("Sorry, you're not my owner. My owner is " + poke.getOwner(), cell.ask(
-                tweet, poke));
+                tweet));
     }
     
     @Test
     public final void test4() {
         Tweet tweet = new Tweet(poke.getOwner(), "@abohotelbis #coucou");
         assertEquals("Ce n'est pas une attaque", cell.ask(
-                tweet, poke));
+                tweet));
     }
 }

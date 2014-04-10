@@ -5,6 +5,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
+
+import fr.univaix.iut.pokebattle.DAOFactoryJPA;
+import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -21,12 +24,8 @@ public class CatchPokemonCell implements SmartCell{
 	public String ask(Tweet question){
 		
 		
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
-    	EntityManager em = emf.createEntityManager();
-    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
-    	Pokemon pokemon = new Pokemon();
-        pokemon = daopok.getById("AboHotelBis");
+        DAOPokemon DAO = DAOFactoryJPA.createDAOPokemon();
+        Pokemon pokemon = DAO.getById("AboHotelBis");
 		
 		String asking = question.getText().toUpperCase();
 		if(asking.contains("POKEBALL"))
@@ -34,7 +33,7 @@ public class CatchPokemonCell implements SmartCell{
 	        
 	        if (pokemon.getOwner() == null) {
 	        	pokemon.setOwner(question.getScreenName());
-	        	daopok.update(pokemon);
+	        	DAO.update(pokemon);
 	        	return "@" + pokemon.getOwner() + " is now my owner.";
 	        	
 	        }

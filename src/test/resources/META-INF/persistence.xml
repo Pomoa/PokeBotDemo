@@ -4,6 +4,7 @@
   <persistence-unit name="pokebattlePU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>fr.univaix.iut.pokebattle.Pokemon</class>
+    <class>fr.univaix.iut.pokebattle.Attaque</class>
 
     <properties>
         <property name="eclipselink.target-database" value="Derby" />

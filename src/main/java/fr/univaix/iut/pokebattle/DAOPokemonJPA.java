@@ -17,7 +17,7 @@ public class DAOPokemonJPA implements DAOPokemon {
         this.entityManager = entityManager;
     }
 
-    public List<Pokemon> findByType(String type) {
+    public List<Pokemon> findByType(Type type) {
         TypedQuery<Pokemon> query = entityManager.createNamedQuery(Pokemon.FIND_BY_TYPE, Pokemon.class);
         query.setParameter("ftype", type);
         return query.getResultList();

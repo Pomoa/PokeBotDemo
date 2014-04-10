@@ -38,15 +38,10 @@ public class Main {
 		Pokemon pok = new Pokemon();
 		pok.setName("AboHotelBis");
 		//pok.setAttaques(attaques);
-		pok.setType1("Poison");
+		pok.setType1(Type.POISON);
 		pok.setType2(null);
-		pok.setCharac(null);
 		pok.setColor("Violet");
 		pok.setOwner(null);
-		pok.setEvolution("Arbok");
-		pok.setPrevolution(null);
-		pok.setCry("abo abo");
-		pok.setNum(023);
 		pok.setXP(0);
 		pok.setLevel(1);
 		pok.setPVMax(30);

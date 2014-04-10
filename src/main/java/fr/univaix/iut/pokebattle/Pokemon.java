@@ -9,6 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 
+
+
 @Entity
 @NamedQueries({
         @NamedQuery(name = Pokemon.FIND_ALL, query = "SELECT p FROM Pokemon p"),
@@ -29,35 +31,30 @@ public class Pokemon {
     private Collection<Attaque> attaques;
     
     
-    private String Type1;
+    private Type Type1;
 
-    public String getType1() {
+    public Type getType1() {
 		return Type1;
 	}
 
-	public void setType1(String type1) {
+	public void setType1(Type type1) {
 		Type1 = type1;
 	}
 
-	public String getType2() {
+	public Type getType2() {
 		return Type2;
 	}
 
-	public void setType2(String type2) {
+	public void setType2(Type type2) {
 		Type2 = type2;
 	}
 
 	/* @Enumerated(EnumType.STRING) */
-    private String Type2;
+    private Type Type2;
 
-    private String Charac;
     private String Color;
     private String Owner;
-    private String Evolution;
-    private String Prevolution;
-    private String Cry;
 
-    private int Num;
     private int XP;
     private int Level;
     private int PVMax;
@@ -83,9 +80,7 @@ public class Pokemon {
     // Getteurs & Setteurs
 
 
-    public String getCry() {
-        return Cry;
-    }
+
 
     public Collection<Attaque> getAttaques() {
 		return attaques;
@@ -95,9 +90,6 @@ public class Pokemon {
 		this.attaques = attaques;
 	}
 
-	public void setCry(String cry) {
-        this.Cry = cry;
-    }
 
     public String getOwner() {
         return Owner;
@@ -131,21 +123,8 @@ public class Pokemon {
     	Name = name;
     }
 
-    public String getType() {
-        return Type1;
-    }
 
-    public void setType(String type) {
-        Type1 = type;
-    }
 
-    public String getCharac() {
-        return Charac;
-    }
-
-    public void setCharac(String charac) {
-    	Charac = charac;
-    }
 
     public String getColor() {
         return Color;
@@ -155,13 +134,7 @@ public class Pokemon {
     	Color = color;
     }
 
-    public int getNum() {
-        return Num;
-    }
 
-    public void setNum(int num) {
-        Num = num;
-    }
 
     public int getXP() {
         return XP;
@@ -179,21 +152,6 @@ public class Pokemon {
     	Level = level;
     }
 
-    public String getEvolution() {
-        return Evolution;
-    }
-
-    public void setEvolution(String evolution) {
-        this.Evolution = evolution;
-    }
-
-    public String getPrevolution() {
-        return Prevolution;
-    }
-
-    public void setPrevolution(String prevolution) {
-        this.Prevolution = prevolution;
-    }
 
     public float getHeight() {
         return Height;
@@ -214,10 +172,8 @@ public class Pokemon {
     @Override
     public String toString() {
         return "Pokemon [Nom=" + Name + ", Type1=" + Type1 + ", Type2=" + Type2
-                + ", Caractere=" + Charac + ", Couleur=" + Color
-                + ", Eleveur=" + Owner + ", Evolution=" + Evolution
-                + ", Prevolution=" + Prevolution + ", Cri=" + Cry + ", Num="
-                + Num + ", Experience=" + XP + ", Niveau=" + Level
+                + ", Couleur=" + Color + ", Eleveur=" + Owner
+                + ", Experience=" + XP + ", Niveau=" + Level
                 + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
                 + ", Taille=" + Height + ", Poid="
                 + Weight + "]";

@@ -5,8 +5,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import fr.univaix.iut.pokebattle.DAOFactoryJPA;
-import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -16,17 +14,22 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 public class AskSpecificationsCell implements SmartCell{
 	public String ask(Tweet question){
 		
-        DAOPokemon DAO = DAOFactoryJPA.createDAOPokemon();
-        Pokemon pokemon = DAO.getById("AboHotelBis");
+    	EntityManagerFactory emf = Persistence
+    			.createEntityManagerFactory("pokebattlePU");
+    	EntityManager em = emf.createEntityManager();
+    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
+    	Pokemon pokemon = new Pokemon();
+        pokemon = daopok.getById("AboHotelBis");
         
 		String asking = question.getText();
 
         if (containsLevel(asking)) {
-            return "#level = " + pokemon.getLevel();
+        	System.out.println(pokemon.getLevel());
+            return "@" + question.getScreenName() + " #level = " + pokemon.getLevel();           
          } else if (containsPV(asking)) {
-            return "#PV = " + pokemon.getPVNow() + "/" + pokemon.getPVMax();
+            return "@" + question.getScreenName() + " #PV = " + pokemon.getPVNow() + "/" + pokemon.getPVMax();
          } else if (containsXP(asking)) {
-            return "#XP = " + pokemon.getXP();
+            return "@" + question.getScreenName() + " #XP = " + pokemon.getXP();
          } else {
             System.out.println(pokemon.getLevel());
             return null;
@@ -36,6 +39,7 @@ public class AskSpecificationsCell implements SmartCell{
 
 
     public final boolean containsLevel(final String asking) {
+    	asking.toUpperCase();
         if (asking.contains("#STAT #LEVEL")
             || asking.contains("#STAT#LEVEL")
             || asking.contains(" #STAT#LEVEL")
@@ -46,6 +50,7 @@ public class AskSpecificationsCell implements SmartCell{
     }
 
     public final boolean containsPV(final String asking) {
+    	asking.toUpperCase();
         if (asking.contains("#STAT #PV")
             || asking.contains("#STAT#PV")
             || asking.contains(" #STAT#PV")
@@ -56,6 +61,7 @@ public class AskSpecificationsCell implements SmartCell{
     }
 
     public boolean containsXP(final String asking) {
+    	asking.toUpperCase();
         if (asking.contains("#STAT #XP")
             || asking.contains("#STAT#XP")
             || asking.contains(" #STAT#XP")

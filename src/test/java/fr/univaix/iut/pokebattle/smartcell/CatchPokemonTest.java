@@ -19,7 +19,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fr.univaix.iut.pokebattle.DAOFactoryJPA;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
@@ -35,17 +34,17 @@ public class CatchPokemonTest {
 		@BeforeClass
 		public static void initTestFixture() throws Exception {
 		    // Get the entity manager for the tests.
-		    entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
-		    entityManager = entityManagerFactory.createEntityManager();
+	        // Get the entity manager for the tests.
+	        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePU");
+	        entityManager = entityManagerFactory.createEntityManager();
 
-		    DAOFactoryJPA.setEntityManager(entityManager);
-		    Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
+	        Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
 
-		    dbUnitConnection = new DatabaseConnection(connection);
-		    //Loads the data set from a file
-		    dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
-		            .getContextClassLoader()
-		            .getResourceAsStream("pokemonDataset.xml"));
+	        dbUnitConnection = new DatabaseConnection(connection);
+	        //Loads the data set from a file
+	        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
+	                .getContextClassLoader()
+	                .getResourceAsStream("pokemonDataset.xml"));
 		}
 		
 	    @AfterClass

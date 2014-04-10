@@ -39,12 +39,17 @@ public class PokeBot implements Bot {
 
     public final String ask(final Tweet question) {
         String answer = "";
-            for (SmartCell cell:smartCells) {
+            /**for (SmartCell cell:smartCells) {
                 if (cell.ask(question) != null) {
                    answer = answer + cell.ask(question) + " ";
                 }
 
-            }
+            }**/
+        CatchPokemonCell cell = new CatchPokemonCell();
+        if (cell.ask(question) != null) {
+            answer = answer + cell.ask(question) + " ";
+         }
+       
        if ("".equals(answer)) {
            answer = "@" + question.getScreenName()
                         + " I don't understand your question.";
@@ -56,7 +61,7 @@ public class PokeBot implements Bot {
        Calendar calendar = GregorianCalendar.getInstance();
        calendar.setTime(DateTweet);
        
-       return answer + " // à " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+       return "@" + question.getScreenName() + answer + " // à " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
 
     }
 

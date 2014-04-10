@@ -5,9 +5,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 
-
-import fr.univaix.iut.pokebattle.DAOFactoryJPA;
-import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -18,31 +15,38 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 public class CatchPokemonCell implements SmartCell{
-	public CatchPokemonCell(){
-		
-	}
 	public String ask(Tweet question){
 		
 		
-        DAOPokemon DAO = DAOFactoryJPA.createDAOPokemon();
-        Pokemon pokemon = DAO.getById("AboHotelBis");
+			System.out.println("Test1");
+		
+	    	EntityManagerFactory emf = Persistence
+	    				.createEntityManagerFactory("pokebattlePU");
+	    	EntityManager em = emf.createEntityManager();
+	    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
+	    	Pokemon pokemon = new Pokemon();
+	        pokemon = daopok.getById("AboHotelBis");;
 		
 		String asking = question.getText().toUpperCase();
 		if(asking.contains("POKEBALL"))
 		{
+			System.out.println("Test2");
 	        
 	        if (pokemon.getOwner() == null) {
 	        	pokemon.setOwner(question.getScreenName());
-	        	DAO.update(pokemon);
+	        	daopok.update(pokemon);
+	        	System.out.println("Test3");
 	        	return "@" + question.getScreenName() + " You are now my owner.";
 	        	
 	        }
 
 			else 
 			{
-				return "@" + question.getScreenName() + "I already have an owner is name is @" + pokemon.getOwner() + ".";
+				System.out.println("Test4");
+				return "@" + question.getScreenName() + " I already have an owner is name is @" + pokemon.getOwner() + ".";
 			}
 		}
+		System.out.println("Test5");
 		return null;
 	}
 }

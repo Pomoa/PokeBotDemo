@@ -1,7 +1,10 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
-import fr.univaix.iut.pokebattle.DAOFactoryJPA;
-import fr.univaix.iut.pokebattle.DAOPokemon;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
@@ -9,11 +12,16 @@ public class PokeAttackCell {
 
 
     public  String ask(final Tweet tweet) {
-        DAOPokemon DAO = DAOFactoryJPA.createDAOPokemon();
-        Pokemon poke = DAO.getById("AboHotelBis");
+    	
+    	EntityManagerFactory emf = Persistence
+    			.createEntityManagerFactory("pokebattlePU");
+    	EntityManager em = emf.createEntityManager();
+    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
+    	Pokemon pokemon = new Pokemon();
+        pokemon = daopok.getById("AboHotelBis");;
         
-        if (poke.getOwner() != tweet.getScreenName()) {
-        	return "Sorry, you're not my owner. My owner is " + poke.getOwner();
+        if (pokemon.getOwner() != tweet.getScreenName()) {
+        	return " Sorry, you're not my owner. My owner is " + pokemon.getOwner();
         } else {
 	        String result = "@";
 	        if (tweet.getHashTag(0).equals("attack")) {

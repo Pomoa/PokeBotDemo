@@ -47,11 +47,11 @@ public class CatchPokemonTest {
 	                .getResourceAsStream("pokemonDataset.xml"));
 		}
 		
-	    @AfterClass
+	    /**@AfterClass
 	    public static void finishTestFixture() throws Exception {
 	        entityManager.close();
 	        entityManagerFactory.close();
-	    }
+	    }**/
 		
 		@Before
 		public void setUp() throws Exception {

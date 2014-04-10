@@ -10,7 +10,6 @@ import javax.persistence.Persistence;
 
 public class Main {
 
-	private static List<Attaque> attaques;
 
 	public static void createDatabase() {
 

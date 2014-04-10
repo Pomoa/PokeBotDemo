@@ -1,7 +1,16 @@
 <dataset>
     <POKEMON Nom="AboHotelBis" Type1="POISON" Type2="null" Couleur="Violet" 
-    Eleveur="null" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Taille="41" Poid="40"/>
+    Eleveur="null" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Taille="41" Poid="40" />
     
     <POKEMON Nom="Rattata" Type1="NORMAL" Type2="null" Couleur="Gris" 
-    Eleveur="null" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Taille="41" Poid="40"/>
+    Eleveur="null" Experience="0" Niveau="1" VieMax="100" VieActuel="0" Taille="41" Poid="40" />
+    
+    <ATTAQUE NomAttaque="Ligotage" PP="20" PRECIS="85" PUISSANCE="15" TYPEATTAQUE="null" />
+    
+    <ATTAQUE NomAttaque="Groz'Yeux" PP="30" PRECIS="100" PUISSANCE="0" TYPEATTAQUE="null" />
+    
+    <POKEMON_ATTAQUE PokemonNAME="AboHotelBis" attaques_NOMATTAQUE="Groz'Yeux" />
+    
+    <POKEMON_ATTAQUE PokemonNAME="AboHotelBis" attaques_NOMATTAQUE="Ligotage" />
+    
 </dataset>

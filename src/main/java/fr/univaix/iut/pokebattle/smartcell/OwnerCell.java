@@ -10,17 +10,18 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class OwnerCell implements SmartCell {
 
-    public OwnerCell() { }
+	private EntityManager em;
+    public OwnerCell(EntityManager em) {
+    	this.em = em;
+    }
 
+    
     @Override
     public String ask(Tweet question) {
     	
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
-    	EntityManager em = emf.createEntityManager();
     	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
     	Pokemon pokemon = new Pokemon();
-        pokemon = daopok.getById("AboHotelBis");;
+        pokemon = daopok.getById("AboHotelBis");
         
         String asking = question.getText().toUpperCase();
         if (asking.contains("OWNER")) {

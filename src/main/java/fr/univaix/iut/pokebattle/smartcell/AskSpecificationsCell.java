@@ -2,8 +2,6 @@ package fr.univaix.iut.pokebattle.smartcell;
 
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
@@ -12,16 +10,21 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 public class AskSpecificationsCell implements SmartCell{
-	public String ask(Tweet question){
-		
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
-    	EntityManager em = emf.createEntityManager();
+	
+	private EntityManager em;
+    public AskSpecificationsCell(EntityManager em) {
+    	this.em = em;
+    }
+
+    
+    @Override
+    public String ask(Tweet question) {
+    	
     	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
     	Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
         
-		String asking = question.getText();
+		String asking = question.getText().toUpperCase();
 
         if (containsLevel(asking)) {
         	System.out.println(pokemon.getLevel());
@@ -39,7 +42,6 @@ public class AskSpecificationsCell implements SmartCell{
 
 
     public final boolean containsLevel(final String asking) {
-    	asking.toUpperCase();
         if (asking.contains("#STAT #LEVEL")
             || asking.contains("#STAT#LEVEL")
             || asking.contains(" #STAT#LEVEL")
@@ -50,7 +52,6 @@ public class AskSpecificationsCell implements SmartCell{
     }
 
     public final boolean containsPV(final String asking) {
-    	asking.toUpperCase();
         if (asking.contains("#STAT #PV")
             || asking.contains("#STAT#PV")
             || asking.contains(" #STAT#PV")
@@ -61,7 +62,6 @@ public class AskSpecificationsCell implements SmartCell{
     }
 
     public boolean containsXP(final String asking) {
-    	asking.toUpperCase();
         if (asking.contains("#STAT #XP")
             || asking.contains("#STAT#XP")
             || asking.contains(" #STAT#XP")

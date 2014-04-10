@@ -38,8 +38,6 @@ public class Pokemon {
     @Enumerated(EnumType.STRING)
     private Type type1;
 
-    @Enumerated(EnumType.STRING)
-    private Type type2;
 
     public Type getType1() {
         return type1;
@@ -49,13 +47,6 @@ public class Pokemon {
         this.type1 = types1;
     }
 
-    public Type getType2() {
-        return type2;
-    }
-
-    public void setType2(Type types2) {
-        this.type2 = types2;
-    }
 
 
     private String Color;
@@ -175,7 +166,7 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon [Nom=" + Name + ", Type1=" + type1 + ", Type2=" + type2 + ", Couleur=" + Color
+        return "Pokemon [Nom=" + Name + ", Type1=" + type1 + ", Couleur=" + Color
                 + ", Eleveur=" + Owner + ", Experience=" + XP
                 + ", Niveau=" + Level + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
                 + ", Taille=" + Height + ", Poid="

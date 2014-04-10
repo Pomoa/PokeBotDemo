@@ -1,8 +1,6 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
@@ -10,17 +8,15 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class HelloCell implements SmartCell {
 
-    
-    public HelloCell() {
-
+	private EntityManager em;
+    public HelloCell(EntityManager em) {
+    	this.em = em;
     }
+
     
     @Override
     public String ask(Tweet question) {
     	
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
-    	EntityManager em = emf.createEntityManager();
     	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
     	Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");

@@ -24,7 +24,7 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class CatchPokemonTest {
 
-		CatchPokemonCell cell = new CatchPokemonCell();
+		
 		
 		private static EntityManager entityManager;
 	    private static FlatXmlDataSet dataset;
@@ -35,7 +35,7 @@ public class CatchPokemonTest {
 		public static void initTestFixture() throws Exception {
 		    // Get the entity manager for the tests.
 	        // Get the entity manager for the tests.
-	        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePU");
+	        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
 	        entityManager = entityManagerFactory.createEntityManager();
 
 	        Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
@@ -47,18 +47,19 @@ public class CatchPokemonTest {
 	                .getResourceAsStream("pokemonDataset.xml"));
 		}
 		
-	    /**@AfterClass
+	    @AfterClass
 	    public static void finishTestFixture() throws Exception {
 	        entityManager.close();
 	        entityManagerFactory.close();
-	    }**/
+	    }
 		
 		@Before
 		public void setUp() throws Exception {
 		    //Clean the data from previous test and insert new data test.
 		    DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
 		}
-
+		
+		CatchPokemonCell cell = new CatchPokemonCell(entityManager);
 
 		@Test
 		public void testCaptureAboHotelBisSucces() throws DatabaseUnitException {

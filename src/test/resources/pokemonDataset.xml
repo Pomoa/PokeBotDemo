@@ -1,9 +1,73 @@
-<dataset>
-    <POKEMON NAME="AboHotelBis" TYPE1="POISON" TYPE2="null" COLOR="Violet" 
-    OWNER="null" XP="0" LEVEL="1" PVMAX="100" PVNOW="0" HEIGHT="2" WEIGHT="6.9" />
+<!--<?xml version="1.0" encoding="UTF-8"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="Pokemon">
+    <table_data name="POKEMON">
+    <row>
+        <field name="NAME">AboHotelBis</field>
+        <field name="TYPE1">POISON</field>
+        <field name="COLOR">Violet</field>
+        <field name="XP">0</field>
+        <field name="LEVEL">1</field>
+        <field name="PVMAX">100</field>
+        <field name="PVNOW">0</field>
+        <field name="HEIGHT">2</field>
+        <field name="WEIGHT">6.9</field>
+        <field name="OWNER" xsi:nil="true"></field>
+        <field name="TYPE2" xsi:nil="true"></field>
+    </row>
+    <row>
+        <field name="NAME">Rattata</field>
+        <field name="TYPE1">NORMAL</field>
+        <field name="COLOR">Gris</field>
+        <field name="XP">0</field>
+        <field name="LEVEL">1</field>
+        <field name="PVMAX">100</field>
+        <field name="PVNOW">0</field>
+        <field name="HEIGHT">41</field>
+        <field name="WEIGHT">40</field>
+        <field name="OWNER" xsi:nil="true"></field>
+        <field name="TYPE2" xsi:nil="true"></field>
+    </row>
     
-    <POKEMON NAME="Rattata" TYPE1="NORMAL" TYPE2="null" COLOR="Gris" 
-    OWNER="null" XP="0" LEVEL="1" PVMAX="100" PVNOW="0" HEIGHT="41" WEIGHT="40" />
+    </table_data>
+    <table_data name="ATTAQUE">
+    <row>
+        <field name="NOMATTAQUE">Ligotage</field>
+        <field name="PP">20</field>
+        <field name="PRECIS">85</field>
+        <field name="PUISSANCE">15</field>
+        <field name="TYPEATTAQUE" xsi:nil="true"></field>
+    </row>
+    <row>
+        <field name="NOMATTAQUE">Groz'Yeux</field>
+        <field name="PP">30</field>
+        <field name="PRECIS">100</field>
+        <field name="PUISSANCE">0</field>
+        <field name="TYPEATTAQUE" xsi:nil="true"></field>
+    </row>
+    </table_data>
+    <table_data name="POKEMON_ATTAQUE">
+    <row>
+        <field name="Pokemon_NAME">AboHotelBis</field>
+        <field name="attaques_NOMATTAQUE">Groz'Yeux</field>
+    </row>
+        <row>
+        <field name="Pokemon_NAME">AboHotelBis</field>
+        <field name="attaques_NOMATTAQUE">Ligotage</field>
+    </row>
+    </table_data>
+</database>
+</mysqldump>-->
+
+
+
+
+<dataset>
+    <POKEMON NAME="AboHotelBis" OWNER="null" TYPE1="POISON" COLOR="Violet" XP="0" LEVEL="1" PVMAX="100" 
+    PVNOW="0" HEIGHT="2" WEIGHT="6.9"> </POKEMON>
+    
+    <POKEMON NAME="Rattata" OWNER="null" TYPE1="NORMAL" COLOR="Gris" XP="0" LEVEL="1" PVMAX="100" 
+    PVNOW="0" HEIGHT="41" WEIGHT="40"> </POKEMON>
     
     <ATTAQUE NOMATTAQUE="Ligotage" PP="20" PRECIS="85" PUISSANCE="15" TYPEATTAQUE="null" />
     

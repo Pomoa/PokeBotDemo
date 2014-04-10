@@ -1,8 +1,10 @@
 package fr.univaix.iut.pokebattle;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -14,9 +16,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Pokemon.FIND_ALL, query = "SELECT p FROM Pokemon p"),
-        @NamedQuery(name = Pokemon.FIND_BY_TYPE, query = "SELECT p FROM Pokemon p WHERE p.Type1 = :ftype OR p.Type2 = :ftype"),
-        @NamedQuery(name = Pokemon.FIND_BY_NOM, query = "SELECT p FROM Pokemon p WHERE p.Name = :fnom")
-}) 
+        @NamedQuery(name = Pokemon.FIND_BY_NOM, query = "SELECT p FROM Pokemon p WHERE p.Name = :fnom"),
+        @NamedQuery(name = Pokemon.FIND_BY_TYPE, query = "SELECT p FROM Pokemon p WHERE p.type1 = :ftype")
+        })
+ 
 
 public class Pokemon {
 
@@ -28,34 +31,40 @@ public class Pokemon {
     private String Name;
 
     @ManyToMany
-    private Collection<Attaque> attaques;
+    private List<Attaque> attaques;
     
     
-    private Type Type1;
+
+    @Enumerated(EnumType.STRING)
+    private Type type1;
+
+    @Enumerated(EnumType.STRING)
+    private Type type2;
 
     public Type getType1() {
-		return Type1;
-	}
+        return type1;
+    }
 
-	public void setType1(Type type1) {
-		Type1 = type1;
-	}
+    public void setType1(Type types1) {
+        this.type1 = types1;
+    }
 
-	public Type getType2() {
-		return Type2;
-	}
+    public Type getType2() {
+        return type2;
+    }
 
-	public void setType2(Type type2) {
-		Type2 = type2;
-	}
+    public void setType2(Type types2) {
+        this.type2 = types2;
+    }
 
-	/* @Enumerated(EnumType.STRING) */
-    private Type Type2;
 
     private String Color;
     private String Owner;
 
-    private int XP;
+
+
+
+	private int XP;
     private int Level;
     private int PVMax;
     private int PVNow;
@@ -80,51 +89,46 @@ public class Pokemon {
     // Getteurs & Setteurs
 
 
-
-
-    public Collection<Attaque> getAttaques() {
+	public List<Attaque> getAttaques() {
 		return attaques;
 	}
 
-	public void setAttaques(Collection<Attaque> attaques) {
+	public String getName() {
+		return Name;
+	}
+
+	public void setName(String name) {
+		Name = name;
+	}
+
+	public int getPVMax() {
+		return PVMax;
+	}
+
+	public void setPVMax(int pVMax) {
+		PVMax = pVMax;
+	}
+
+	public int getPVNow() {
+		return PVNow;
+	}
+
+	public void setPVNow(int pVNow) {
+		PVNow = pVNow;
+	}
+
+	public void setAttaques(List<Attaque> attaques) {
 		this.attaques = attaques;
 	}
 
 
     public String getOwner() {
-        return Owner;
-    }
+		return Owner;
+	}
 
-    public void setOwner(String Owner) {
-        this.Owner = Owner;
-    }
-
-    public int getPVMax() {
-        return PVMax;
-    }
-
-    public void setPVMax(int pVMax) {
-    	PVMax = pVMax;
-    }
-
-    public int getPVNow() {
-        return PVNow;
-    }
-
-    public void setPVNow(int pVNow) {
-    	PVNow = pVNow;
-    }
-
-    public String getName() {
-        return Name;
-    }
-
-    public void setName(String name) {
-    	Name = name;
-    }
-
-
-
+	public void setOwner(String owner) {
+		Owner = owner;
+	}
 
     public String getColor() {
         return Color;
@@ -171,10 +175,9 @@ public class Pokemon {
 
     @Override
     public String toString() {
-        return "Pokemon [Nom=" + Name + ", Type1=" + Type1 + ", Type2=" + Type2
-                + ", Couleur=" + Color + ", Eleveur=" + Owner
-                + ", Experience=" + XP + ", Niveau=" + Level
-                + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
+        return "Pokemon [Nom=" + Name + ", Type1=" + type1 + ", Type2=" + type2 + ", Couleur=" + Color
+                + ", Eleveur=" + Owner + ", Experience=" + XP
+                + ", Niveau=" + Level + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
                 + ", Taille=" + Height + ", Poid="
                 + Weight + "]";
     }

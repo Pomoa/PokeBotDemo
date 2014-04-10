@@ -10,9 +10,7 @@ import org.slf4j.LoggerFactory;
 public class PokemonMain {
     private static final Logger LOGGER = LoggerFactory.getLogger(PokemonMain.class);
 
-    private PokemonMain() {
-
-    }
+    private PokemonMain() { }
 
     public static void main(String[] args) {
         try {

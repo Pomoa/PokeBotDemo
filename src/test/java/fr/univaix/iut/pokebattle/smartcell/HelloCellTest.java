@@ -4,35 +4,34 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import fr.univaix.iut.pokebattle.bot.PokeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class HelloCellTest {
-	
-	HelloCell cell = new HelloCell();
-    
-    
-    @Test
-    public void testAskHelloFromFollower() throws CloneNotSupportedException {
 
+    HelloCell cell = new HelloCell();
+
+
+    @Test
+    public final void testAskHelloFromFollower()
+                throws CloneNotSupportedException {
         assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi, how are you ?")));
 
     }
-    
-    @Test
-    public void testAskJustHelloFromFollower() throws CloneNotSupportedException {
 
+    @Test
+    public final void testAskJustHelloFromFollower()
+            throws CloneNotSupportedException {
         assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hello")));
 
     }
-    
-    @Test
-    public void testAskJustHiFromFollower() throws CloneNotSupportedException {
 
+    @Test
+    public final void testAskJustHiFromFollower()
+            throws CloneNotSupportedException {
         assertEquals("@Tristan Hi @Tristan, I am Abo.", cell.ask(new Tweet("Tristan", "Hi")));
 
     }
-    
+
     @Test
     public void testAskHelloFromNoOne() throws CloneNotSupportedException {
         

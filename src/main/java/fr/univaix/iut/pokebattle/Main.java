@@ -1,6 +1,8 @@
 package fr.univaix.iut.pokebattle;
 
-import java.util.Collection;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -8,13 +10,14 @@ import javax.persistence.Persistence;
 
 public class Main {
 
-	private static Collection<Attaque> attaques;
+	private static List<Attaque> attaques;
 
 	public static void createDatabase() {
 
 		EntityManagerFactory emf = Persistence
 				.createEntityManagerFactory("pokebattlePU");
 		EntityManager em = emf.createEntityManager();
+		
 		DAOPokemonJPA daopok = new DAOPokemonJPA(em);
 		DAOAttaqueJPA daoattack = new DAOAttaqueJPA(em);
 		
@@ -31,15 +34,14 @@ public class Main {
 		attack2.setPrecision(100);
 		daoattack.insert(attack2);
 		
-		/**attaques = null;
+		ArrayList<Attaque> attaques = new ArrayList<Attaque>();
 		attaques.add(attack1);
-		attaques.add(attack2);**/
+		attaques.add((Attaque) attack2);
 		
 		Pokemon pok = new Pokemon();
 		pok.setName("AboHotelBis");
-		//pok.setAttaques(attaques);
+		pok.setAttaques(attaques);
 		pok.setType1(Type.POISON);
-		pok.setType2(null);
 		pok.setColor("Violet");
 		pok.setOwner(null);
 		pok.setXP(0);

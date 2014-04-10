@@ -13,56 +13,34 @@ import static org.junit.Assert.assertEquals;
  */
 public class PokeBotTest {
     PokeBot pokeBot;
-    
-    
+
+
     @Test
-    public void testAskHelloFromFollower() throws CloneNotSupportedException {
-        
+    public void testAskHelloFromFollower() throws CloneNotSupportedException {        
         pokeBot = new PokeBot();
         assertEquals("@Tristan Hi @Tristan, I am Abo.", pokeBot.ask(new Tweet("Tristan", "Hi, how are you ?")));
-
     }
-    
+
     @Test
-    public void testAskHelloFromNoOne() throws CloneNotSupportedException {
-        
+    public void testAskHelloFromNoOne() throws CloneNotSupportedException {        
         pokeBot = new PokeBot();
         assertEquals("Hi, I am Abo.", pokeBot.ask(new Tweet("Hi, how are you ?")));
 
     }
-    
-    
+
+
     @Test
     public void testAskNoOwner() throws CloneNotSupportedException {
-        
         pokeBot = new PokeBot();
         assertEquals("@Tristan I don't have owner.", pokeBot.ask(new Tweet("Tristan", "Do you have an owner ?")));
-
     }
-    
+
     @Test
     public void testASkOwner() throws CloneNotSupportedException {
         pokeBot = new PokeBot();
         assertEquals("@Tristan My owner is @CaptainObvious.", pokeBot.ask(new Tweet("Tristan","Do you have an owner ?")));
-
     }
-    
-    
-	/**@Test
-	public void TestCatchWithoutEleveur(){
-		PokeBot pokeBot = new PokeBot(null);
-		
-		assertEquals("@CaptainObvious @CaptainObvious is my owner now.", pokeBot.ask(new Tweet ("CaptainObvious","POKEBALL !")));
-	}
-	
-	@Test
-	public void TestCatchWithEleveur(){
-		PokeBot pokeBot = new PokeBot("Jacky");
-		
-		assertEquals("@CaptainObvious My owner is @Jacky.", pokeBot.ask(new Tweet("CaptainObvious", "POKEBALL !")));
-	}**/
-	
-	
+
     @Test
     public void testNoQuestion() throws CloneNotSupportedException {
         pokeBot = new PokeBot();

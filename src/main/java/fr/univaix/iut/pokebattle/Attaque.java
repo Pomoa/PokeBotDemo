@@ -9,8 +9,10 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Attaque.FIND_ALL, query = "SELECT a FROM Attaque a"),
-        @NamedQuery(name = Attaque.FIND_BY_TYPE, query = "SELECT a FROM Attaque a WHERE a.TypeAttaque = :ftype"),
-        @NamedQuery(name = Attaque.FIND_BY_NOM, query = "SELECT a FROM Attaque a WHERE a.NomAttaque = :fnom")
+        @NamedQuery(name = Attaque.FIND_BY_TYPE,
+             query = "SELECT a FROM Attaque a WHERE a.TypeAttaque = :ftype"),
+        @NamedQuery(name = Attaque.FIND_BY_NOM,
+             query = "SELECT a FROM Attaque a WHERE a.NomAttaque = :fnom")
 })
 
 public class Attaque {
@@ -18,13 +20,13 @@ public class Attaque {
     public static final String FIND_BY_TYPE = "findAttaqueByType";
     public static final String FIND_ALL = "findAllAttaque";
     public static final String FIND_BY_NOM = "findAttaqueByNom";
-    
+
     @Id
     private String NomAttaque;
-    
+
     /* @Enumerated(EnumType.STRING) */
     private String TypeAttaque;
-    
+
     private int Pp;
     private int Puissance;
     private int Precis;

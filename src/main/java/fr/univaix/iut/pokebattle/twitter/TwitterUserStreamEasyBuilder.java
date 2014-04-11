@@ -1,5 +1,9 @@
 package fr.univaix.iut.pokebattle.twitter;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import fr.univaix.iut.pokebattle.bot.Bot;
 import fr.univaix.iut.pokebattle.tuse.Credentials;
 import fr.univaix.iut.pokebattle.tuse.TwitterUserStreamEasy;
@@ -49,7 +53,10 @@ public class TwitterUserStreamEasyBuilder {
                 .getScreenName(), status.getText()));
 
         if (response != null) {
-            twitter.updateStatus(response);
+        	Date DateTweet = new Date ();
+            Calendar calendar = GregorianCalendar.getInstance();
+            calendar.setTime(DateTweet);
+            twitter.updateStatus(response + " // à " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + "#PokeBattle");
         }
     }
 

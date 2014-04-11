@@ -2,10 +2,7 @@ package fr.univaix.iut.pokebattle.smartcell;
 
 import static org.junit.Assert.assertEquals;
 
-import java.awt.List;
 import java.sql.Connection;
-import java.util.ArrayList;
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -20,7 +17,6 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import fr.univaix.iut.pokebattle.Attaque;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 

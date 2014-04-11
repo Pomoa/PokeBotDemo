@@ -1,7 +1,11 @@
 package fr.univaix.iut.pokebattle.twitter;
 
+import java.awt.List;
+import java.util.ArrayList;
+
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.Attaque;
 import static org.junit.Assert.assertEquals;
 
 public class TestTweet {
@@ -26,5 +30,14 @@ public class TestTweet {
         Tweet tweet2 = new Tweet("Ca marche #Yosh #Yata");
         assertEquals("Yosh", tweet2.getHashTag(0));
         assertEquals("Yata", tweet2.getHashTag(1));
+    }
+    
+    @Test
+    public void testHashtag2(){
+    	Tweet tweet = new Tweet("nedseb", "Coucou ! #gentil #bonjour");
+    	ArrayList<String> list = new ArrayList<String>();
+    	list.add("gentil");
+    	list.add("bonjour");
+    	assertEquals(list, tweet.getHashTagList());	
     }
 }

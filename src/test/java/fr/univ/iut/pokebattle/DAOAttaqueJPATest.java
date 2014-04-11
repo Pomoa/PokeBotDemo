@@ -34,10 +34,13 @@ public class DAOAttaqueJPATest {
     @BeforeClass
     public static void initTestFixture() throws Exception {
         // Get the entity manager for the tests.
-        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
+        entityManagerFactory = Persistence.
+                createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
 
-        Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
+        Connection connection = ((EntityManagerImpl)
+                (entityManager.getDelegate())).getServerSession().
+                getAccessor().getConnection();
 
         dbUnitConnection = new DatabaseConnection(connection);
         //Loads the data set from a file
@@ -74,8 +77,10 @@ public class DAOAttaqueJPATest {
 
     @Test
     public final void testGetById() throws Exception {
-        assertThat(dao.getById("GrozYeux").getNomAttaque()).isEqualTo("GrozYeux");
-        assertThat(dao.getById("Ligotage").getNomAttaque()).isEqualTo("Ligotage");
+        assertThat(dao.getById("GrozYeux").getNomAttaque()).
+                    isEqualTo("GrozYeux");
+        assertThat(dao.getById("Ligotage").getNomAttaque()).
+                    isEqualTo("Ligotage");
     }
 
     @Test

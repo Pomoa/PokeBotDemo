@@ -34,10 +34,13 @@ public class DAOPokemonJPATest {
     @BeforeClass
     public static void initTestFixture() throws Exception {
         // Get the entity manager for the tests.
-        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
+        entityManagerFactory = Persistence.
+                createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
 
-        Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
+        Connection connection = ((EntityManagerImpl)
+                (entityManager.getDelegate())).getServerSession().
+                getAccessor().getConnection();
 
         dbUnitConnection = new DatabaseConnection(connection);
         //Loads the data set from a file
@@ -73,7 +76,8 @@ public class DAOPokemonJPATest {
 
     @Test
     public final void testGetById() throws Exception {
-        assertThat(dao.getById("AboHotelBis").getName()).isEqualTo("AboHotelBis");
+        assertThat(dao.getById("AboHotelBis").getName())
+                    .isEqualTo("AboHotelBis");
         assertThat(dao.getById("Rattata").getName()).isEqualTo("Rattata");
     }
 

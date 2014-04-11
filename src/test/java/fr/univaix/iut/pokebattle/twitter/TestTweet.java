@@ -31,13 +31,13 @@ public class TestTweet {
         assertEquals("Yosh", tweet2.getHashTag(0));
         assertEquals("Yata", tweet2.getHashTag(1));
     }
-    
+
     @Test
-    public void testHashtag2(){
-    	Tweet tweet = new Tweet("nedseb", "Coucou ! #gentil #bonjour");
-    	ArrayList<String> list = new ArrayList<String>();
-    	list.add("gentil");
-    	list.add("bonjour");
-    	assertEquals(list, tweet.getHashTagList());	
+    public void testHashtag2() {
+        Tweet tweet = new Tweet("nedseb", "Coucou ! #gentil #bonjour");
+        ArrayList<String> list = new ArrayList<String>();
+        list.add("gentil");
+        list.add("bonjour");
+        assertEquals(list, tweet.getHashTagList());
     }
 }

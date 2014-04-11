@@ -13,7 +13,7 @@ public class PokeAttackCell implements SmartCell {
     }
 
     @Override
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         DAOPokemonJPA daopok = new DAOPokemonJPA(em);
         Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
@@ -30,7 +30,8 @@ public class PokeAttackCell implements SmartCell {
                     && pokemon.isAttackOf(question.getHashTag(1))) {
                 for (int i = 1; i < question.getText().length(); i++) {
                     if (question.getText().charAt(i) == '@') {
-                        for (; Character.isLetterOrDigit(question.getText().charAt(++i));) {
+                        for (; Character.isLetterOrDigit(question.
+                                getText().charAt(++i));) {
                             result += question.getText().charAt(i);
                             if (i + 1 == question.getText().length()) {
                                 break;

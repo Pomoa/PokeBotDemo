@@ -86,7 +86,7 @@ public class Pokemon {
 	
 	public boolean isAttackOf (String attack) {
 		for(int i = 0 ; i < attaques.size() ; i++) {
-			if(attaques.get(i).getNomAttaque().equals(attack)) return true;
+			if(attaques.get(i).getNomAttaque().toLowerCase().equals(attack.toLowerCase())) return true;
 		}
 		return false;
 	}

@@ -63,10 +63,18 @@ public class PokeAttackCellTest {
     Pokemon poke = new Pokemon();
     
     @Test
-    public final void test() {
+    public final void testNorm() {
         Tweet tweet = new Tweet(poke.getOwner(),
         "@abohotelbis #attack #ligotage @pika /cc @thepomoaa");
         assertEquals("@pika #attack #ligotage /cc @thepomoaa @" + poke.getOwner(),
+                cell.ask(tweet));
+    }
+    
+    @Test
+    public final void testNormbis() {
+        Tweet tweet = new Tweet(poke.getOwner(),
+        "@abohotelbis #attack #grozyeux @pika /cc @thepomoaa");
+        assertEquals("@pika #attack #grozyeux /cc @thepomoaa @" + poke.getOwner(),
                 cell.ask(tweet));
     }
 

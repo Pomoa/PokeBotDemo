@@ -63,7 +63,11 @@ public class CatchPokemonTest {
 	        entityManagerFactory.close();
 	    }
 		
-		
+		@Test
+		public void testCaptureAboHotelBisSuccess() throws CloneNotSupportedException {
+			assertEquals("@CaptainObvious My owner is @CaptainObvious.",
+					cell.ask(new Tweet("CaptainObvious", "@AboHotelBis pokeball !")));
+		}
 
 
 			

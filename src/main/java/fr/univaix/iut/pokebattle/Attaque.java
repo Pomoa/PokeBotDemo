@@ -29,9 +29,8 @@ public class Attaque {
     private int Puissance;
     private int Precis;
     
-    
     public Attaque() {
-        // TODO Auto-generated constructor stub
+    	
     }
      
 	public String getNomAttaque() {

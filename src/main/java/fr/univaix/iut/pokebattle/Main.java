@@ -28,7 +28,7 @@ public class Main {
 		daoattack.insert(attack1);
 		
 		Attaque attack2 = new Attaque();
-		attack2.setNomAttaque("Groz'Yeux");
+		attack2.setNomAttaque("GrozYeux");
 		attack2.setPp(30);
 		attack2.setPrecision(100);
 		daoattack.insert(attack2);

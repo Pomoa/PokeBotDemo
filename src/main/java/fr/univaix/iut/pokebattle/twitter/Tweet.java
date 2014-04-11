@@ -59,4 +59,8 @@ public class Tweet {
     public final String getHashTag(final int i) {
         return hashTag.get(i);
     }
+    
+    public final ArrayList<String> getHashTagList() {
+    	return hashTag;
+    }
 }

@@ -23,11 +23,12 @@ public class PokeAttackCell implements SmartCell {
     	Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
         
+        if(question.getHashTagList().size() < 2) return null;
         if (pokemon.getOwner() != question.getScreenName()) {
         	return "Sorry, you're not my owner. My owner is " + pokemon.getOwner();
         } else {
 	        String result = "@";
-	        if (question.getHashTag(0).equals("attack")) {
+	        if (question.getHashTag(0).equals("attack") && pokemon.isAttackOf(question.getHashTag(1))) {
 	            for (int i = 1; i < question.getText().length(); i++) {
 	                if (question.getText().charAt(i) == '@') {
 	                    for (; Character.isLetterOrDigit(question.getText().charAt(++i));) {
@@ -53,8 +54,10 @@ public class PokeAttackCell implements SmartCell {
 	            result += " @";
 	            result += question.getScreenName();
 	            return result;
+	        } else if (!pokemon.isAttackOf(question.getHashTag(1))){
+	        	return "Je ne connais pas cette attaque";
 	        } else {
-	            return "Ce n'est pas une attaque";
+	            return null;
 	        }
         }
     }

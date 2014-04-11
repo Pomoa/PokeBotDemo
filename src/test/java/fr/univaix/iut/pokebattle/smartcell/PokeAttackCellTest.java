@@ -89,4 +89,9 @@ public class PokeAttackCellTest {
         assertEquals("Ce n'est pas une attaque", cell.ask(
                 tweet));
     }
+    
+    @Test
+    public final void test5() {
+    	Tweet tweet = new Tweet(poke.getOwner(), "@abohotelbis #attack #explosion @pika");
+    }
 }

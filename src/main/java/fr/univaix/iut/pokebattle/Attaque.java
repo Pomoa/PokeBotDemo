@@ -30,8 +30,12 @@ public class Attaque {
     private int Precis;
     
     
-    public Attaque() {
-        // TODO Auto-generated constructor stub
+    public Attaque(int pp, int puiss, int prec, String nomAtt, String typeAtt) {
+        NomAttaque = nomAtt;
+        TypeAttaque = typeAtt;
+    	Pp = pp;
+        Puissance = puiss;
+        Precis = prec;
     }
      
 	public String getNomAttaque() {

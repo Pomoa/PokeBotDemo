@@ -24,7 +24,7 @@ public class PokeAttackCell implements SmartCell {
         pokemon = daopok.getById("AboHotelBis");
         
         if (pokemon.getOwner() != question.getScreenName()) {
-        	return " Sorry, you're not my owner. My owner is " + pokemon.getOwner();
+        	return "Sorry, you're not my owner. My owner is " + pokemon.getOwner();
         } else {
 	        String result = "@";
 	        if (question.getHashTag(0).equals("attack")) {

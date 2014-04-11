@@ -37,7 +37,7 @@ public class CatchPokemonCell implements SmartCell{
 	        if (pokemon.getOwner() == null) {
 	        	pokemon.setOwner(question.getScreenName());
 	        	daopok.update(pokemon);
-	        	//return "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
+	        	return "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
 	        	
 	        }
 

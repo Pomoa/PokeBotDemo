@@ -67,8 +67,8 @@ public class DAOPokemonJPATest {
     @Test
     public void testFindAll() throws Exception {
         List<Pokemon> pokemons = dao.findAll();
-        assertThat(pokemons.get(0).getName()).isEqualTo("AboHotelBis");
-        assertThat(pokemons.get(1).getName()).isEqualTo("Rattata");
+        assertThat(pokemons.get(1).getName()).isEqualTo("AboHotelBis");
+        assertThat(pokemons.get(0).getName()).isEqualTo("Rattata");
     }
 
     @Test

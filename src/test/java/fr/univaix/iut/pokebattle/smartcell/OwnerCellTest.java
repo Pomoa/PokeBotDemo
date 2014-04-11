@@ -18,6 +18,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.DAOPokemon;
+import fr.univaix.iut.pokebattle.DAOPokemonJPA;
+import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class OwnerCellTest {
@@ -26,6 +29,8 @@ public class OwnerCellTest {
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
+    
+    private DAOPokemon dao = new DAOPokemonJPA(entityManager);
 	
 	@BeforeClass
 	public static void initTestFixture() throws Exception {
@@ -59,15 +64,17 @@ public class OwnerCellTest {
 
 
     @Test
-    public void testAskNoOwner() throws CloneNotSupportedException {
-        
-        
+    public void testAskNoOwner() throws CloneNotSupportedException {      
         assertEquals("@Tristan I don't have owner.", cell.ask(new Tweet("Tristan", "Do you have an owner ?")));
 
     }
     
     @Test
     public void testASkOwner() throws CloneNotSupportedException {
+    	Pokemon abo = new Pokemon();
+    	abo = dao.getById("AboHotelBis");
+    	abo.setOwner("CaptainObvious");
+    	dao.insert(abo);
         assertEquals("@Tristan My owner is @CaptainObvious.", cell.ask(new Tweet("Tristan", "Do you have an owner ?")));
     }
 }

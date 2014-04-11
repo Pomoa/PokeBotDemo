@@ -33,23 +33,16 @@ public class CatchPokemonCell implements SmartCell{
 		String asking = question.getText().toUpperCase();
 		if(asking.contains("POKEBALL"))
 		{
-			System.out.println("Test2");
 	        
 	        if (pokemon.getOwner() == null) {
 	        	pokemon.setOwner(question.getScreenName());
 	        	daopok.update(pokemon);
-	        	System.out.println("Test3");
-	        	return "@" + question.getScreenName() + " You are now my owner.";
+	        	//return "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
 	        	
 	        }
 
-			else 
-			{
-				System.out.println("Test4");
-				return "@" + question.getScreenName() + " I already have an owner is name is @" + pokemon.getOwner() + ".";
-			}
+	        return "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
 		}
-		System.out.println("Test5");
 		return null;
 	}
 }

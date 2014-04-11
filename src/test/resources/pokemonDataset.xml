@@ -59,16 +59,97 @@
 </database>
 </mysqldump>-->
 
-
-
-
-<dataset>
-    <POKEMON NAME="AboHotelBis" OWNER="null" TYPE1="POISON" COLOR="Violet" XP="0" LEVEL="1" PVMAX="100" 
-    PVNOW="0" HEIGHT="2" WEIGHT="6.9"> </POKEMON>
+<!--  <dataset>
+    <table name="POKEMON">
+	    <column>NAME</column>
+	    <column>OWNER</column>
+	    <column>TYPE1</column>
+	    <column>TYPE2</column>
+	    <column>COLOR</column>
+	    <column>XP</column>
+	    <column>LEVEL</column>
+	    <column>PVMAX</column>
+	    <column>PVNOW</column>
+	    <column>HEIGHT</column>
+	    <column>WEIGHT</column>
     
-    <POKEMON NAME="Rattata" OWNER="null" TYPE1="NORMAL" COLOR="Gris" XP="0" LEVEL="1" PVMAX="100" 
+    <row>
+        <value>AboHotelBis</value>
+        <null/>
+        <value>POISON</value>
+        <null/>
+        <value>Violet</value>
+        <value>0</value>
+        <value>1</value>
+        <value>100</value>
+        <value>0</value>
+        <value>2</value>
+        <value>6.9</value>      
+    </row>
+    <row>
+        <value>Rattata</value>
+        <null/>
+        <value>NORMAL</value>
+        <null/>
+        <value>Gris</value>
+        <value>0</value>
+        <value>1</value>
+        <value>100</value>
+        <value>0</value>
+        <value>41</value>
+        <value>40</value> 
+    </row>   
+    </table>
+    <table name="ATTAQUE">
+    	<column>NOMATTAQUE</column>
+	    <column>PP</column>
+	    <column>PRECIS</column>
+	    <column>PUISSANCE</column>
+	    <column>TYPEATTAQUE</column>
+    <row>  
+        <value>Ligotage</value>
+        <value>20</value>
+        <value>85</value>
+        <value>15</value>       
+        <value>NORMAL</value>
+    </row>
+    <row>
+        <value>Groz'Yeux</value>
+        <value>30</value>
+        <value>100</value>
+        <value>0</value>
+        <value>NORMAL</value>
+    </row>
+    <row>
+        <value>Dard-Venin</value>
+        <value>35</value>
+        <value>100</value>
+        <value>15</value>
+        <value>POISON</value>
+    </row>
+    </table>
+    <table name="POKEMON_ATTAQUE">
+        <column>Pokemon_NAME</column>
+	    <column>attaques_NOMATTAQUE</column>
+    <row>
+        <value>AboHotelBis</value>
+        <value>Groz'Yeux</value>
+    </row>
+    <row>
+        <value>AboHotelBis</value>
+        <value>Dard-Venin</value>
+    </row>
+    </table>
+</dataset>-->
+
+
+ <dataset>
+    <POKEMON NAME="Rattata" OWNER="" TYPE1="NORMAL" COLOR="Gris" XP="0" LEVEL="1" PVMAX="100" 
     PVNOW="0" HEIGHT="41" WEIGHT="40"> </POKEMON>
     
+    <POKEMON NAME="AboHotelBis" TYPE1="POISON" COLOR="Violet" XP="0" LEVEL="1" PVMAX="100" 
+    PVNOW="0" HEIGHT="2" WEIGHT="6.9"> </POKEMON>
+      
     <ATTAQUE NOMATTAQUE="Ligotage" PP="20" PRECIS="85" PUISSANCE="15" TYPEATTAQUE="NORMAL" />
     
     <ATTAQUE NOMATTAQUE="Groz'Yeux" PP="30" PRECIS="100" PUISSANCE="0" TYPEATTAQUE="NORMAL" />
@@ -79,6 +160,6 @@
     
     <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Dard-Venin" />
     
-    <!-- <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Ligotage" /> -->
+    <!-- <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Ligotage" />-->
     
 </dataset>

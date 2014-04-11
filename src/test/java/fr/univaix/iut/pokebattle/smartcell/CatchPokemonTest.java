@@ -19,6 +19,9 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.DAOPokemon;
+import fr.univaix.iut.pokebattle.DAOPokemonJPA;
+import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
@@ -30,6 +33,8 @@ public class CatchPokemonTest {
 	    private static FlatXmlDataSet dataset;
 	    private static DatabaseConnection dbUnitConnection;
 	    private static EntityManagerFactory entityManagerFactory;
+	    
+	    private DAOPokemon dao = new DAOPokemonJPA(entityManager);
 		
 		@BeforeClass
 		public static void initTestFixture() throws Exception {
@@ -61,15 +66,21 @@ public class CatchPokemonTest {
 		
 		CatchPokemonCell cell = new CatchPokemonCell(entityManager);
 
+
+		
 		@Test
-		public void testCaptureAboHotelBisSucces() throws DatabaseUnitException {
-			assertEquals("@CaptainObvious You are now my owner.",
+		public void testCaptureAboHotelBisSucces() throws CloneNotSupportedException {
+			assertEquals("@CaptainObvious My owner is @CaptainObvious.",
 					cell.ask(new Tweet("CaptainObvious", "@AboHotelBis pokeball !")));
 		}
 			
 		@Test
-		public void testAboHotelBisFail() throws DatabaseUnitException {
-			assertEquals("@CaptainObvious I already have an owner is name is @Tristan.",
+		public void testCaptureAboHotelBisFail() throws CloneNotSupportedException {
+	    	Pokemon abo = new Pokemon();
+	    	abo = dao.getById("AboHotelBis");
+	    	abo.setOwner("Tristan");
+	    	dao.insert(abo);
+			assertEquals("@CaptainObvious My owner is @Tristan.",
 					cell.ask(new Tweet("CaptainObvious", "@AboHotelBis pokeball !")));
 		}
 

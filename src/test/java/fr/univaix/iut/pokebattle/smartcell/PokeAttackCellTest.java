@@ -32,7 +32,7 @@ public class PokeAttackCellTest {
 	public static void initTestFixture() throws Exception {
 	    // Get the entity manager for the tests.
         // Get the entity manager for the tests.
-        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePU");
+        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
 
         Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();

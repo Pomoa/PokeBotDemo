@@ -26,7 +26,7 @@ public class OwnerCell implements SmartCell {
         String asking = question.getText().toUpperCase();
         if (asking.contains("OWNER")) {
             if (pokemon.getOwner() != null) {
-               String answer = " My owner is @"
+               String answer = "@" + question.getScreenName() + " My owner is @"
                        + pokemon.getOwner() + ".";
 
                

@@ -25,7 +25,7 @@ public class HelloCell implements SmartCell {
         String asking = question.getText().toUpperCase();
         if (containsHello(asking)) {
                 return "@" + question.getScreenName() + " Hi @" + question.getScreenName()
-                       + ", I am " + pokemon.getName();
+                       + ", I am " + pokemon.getName() + ".";
         }
         return null;
 

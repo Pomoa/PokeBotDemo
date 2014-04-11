@@ -92,7 +92,7 @@ public class AskSpecificationsTest {
     public final void testAskPV() {
        
 
-        assertEquals("@CaptainObvious #PV = 100", cell.ask(new Tweet(
+        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
                 "CaptainObvious", "#STAT #PV")));
     }
 
@@ -100,7 +100,7 @@ public class AskSpecificationsTest {
     public final void testAskPVColle() {
        
 
-        assertEquals("@CaptainObvious #PV = 100", cell.ask(new Tweet(
+        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
                 "CaptainObvious", "#STAT#PV")));
     }
 
@@ -108,7 +108,7 @@ public class AskSpecificationsTest {
     public final void testAskPVEspace() {
        
 
-        assertEquals("@CaptainObvious #PV = 100", cell.ask(new Tweet(
+        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
                 "CaptainObvious", " #STAT #PV")));
     }
 
@@ -116,7 +116,7 @@ public class AskSpecificationsTest {
     public final void testAskPVEspaceColle() {
        
 
-        assertEquals("@CaptainObvious #PV = 100", cell.ask(new Tweet(
+        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
                 "CaptainObvious", " #STAT#PV")));
     }
 

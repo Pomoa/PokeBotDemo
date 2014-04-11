@@ -14,6 +14,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -34,10 +35,11 @@ public class CatchPokemonTest {
 	    private static DatabaseConnection dbUnitConnection;
 	    private static EntityManagerFactory entityManagerFactory;
 	    
-	    private DAOPokemon dao = new DAOPokemonJPA(entityManager);
+	    private DAOPokemon dao;
 		
-		@BeforeClass
-		public static void initTestFixture() throws Exception {
+	    CatchPokemonCell cell;
+		@Before
+		public void initTestFixture() throws Exception {
 		    // Get the entity manager for the tests.
 	        // Get the entity manager for the tests.
 	        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
@@ -50,26 +52,27 @@ public class CatchPokemonTest {
 	        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
 	                .getContextClassLoader()
 	                .getResourceAsStream("pokemonDataset.xml"));
+	        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
+	        dao= new DAOPokemonJPA(entityManager);
+	        cell = new CatchPokemonCell(entityManager);
 		}
 		
-	    @AfterClass
-	    public static void finishTestFixture() throws Exception {
+	    @After
+	    public void finishTestFixture() throws Exception {
 	        entityManager.close();
 	        entityManagerFactory.close();
 	    }
 		
-		@Before
-		public void setUp() throws Exception {
-		    //Clean the data from previous test and insert new data test.
-		    DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
-		}
 		
-		CatchPokemonCell cell = new CatchPokemonCell(entityManager);
 
 
 		
 		@Test
 		public void testCaptureAboHotelBisSucces() throws CloneNotSupportedException {
+			Pokemon abo = new Pokemon();
+	    	abo = dao.getById("AboHotelBis");
+	    	abo.setOwner(null);
+	    	dao.insert(abo);
 			assertEquals("@CaptainObvious My owner is @CaptainObvious.",
 					cell.ask(new Tweet("CaptainObvious", "@AboHotelBis pokeball !")));
 		}

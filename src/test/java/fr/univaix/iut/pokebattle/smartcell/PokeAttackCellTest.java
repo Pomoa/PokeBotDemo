@@ -57,7 +57,7 @@ public class PokeAttackCellTest {
 	}
 	
 	
-    PokeAttackCell cell = new PokeAttackCell();
+    PokeAttackCell cell = new PokeAttackCell(entityManager);
     Pokemon poke = new Pokemon();
 
     @Test

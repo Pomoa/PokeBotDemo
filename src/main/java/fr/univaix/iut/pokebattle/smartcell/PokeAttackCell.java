@@ -8,38 +8,41 @@ import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
-public class PokeAttackCell {
+public class PokeAttackCell implements SmartCell {
 
+	private EntityManager em;
+    public PokeAttackCell(EntityManager em) {
+    	this.em = em;
+    }
 
-    public  String ask(final Tweet tweet) {
+    
+    @Override
+    public String ask(Tweet question) {
     	
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
-    	EntityManager em = emf.createEntityManager();
     	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
     	Pokemon pokemon = new Pokemon();
-        pokemon = daopok.getById("AboHotelBis");;
+        pokemon = daopok.getById("AboHotelBis");
         
-        if (pokemon.getOwner() != tweet.getScreenName()) {
+        if (pokemon.getOwner() != question.getScreenName()) {
         	return " Sorry, you're not my owner. My owner is " + pokemon.getOwner();
         } else {
 	        String result = "@";
-	        if (tweet.getHashTag(0).equals("attack")) {
-	            for (int i = 1; i < tweet.getText().length(); i++) {
-	                if (tweet.getText().charAt(i) == '@') {
-	                    for (; Character.isLetterOrDigit(tweet.getText().charAt(++i));) {
-	                        result += tweet.getText().charAt(i);
-	                        if (i + 1 == tweet.getText().length()) {
+	        if (question.getHashTag(0).equals("attack")) {
+	            for (int i = 1; i < question.getText().length(); i++) {
+	                if (question.getText().charAt(i) == '@') {
+	                    for (; Character.isLetterOrDigit(question.getText().charAt(++i));) {
+	                        result += question.getText().charAt(i);
+	                        if (i + 1 == question.getText().length()) {
 	                            break;
 	                        }
 	                    }
 	                    result += " #attack #";
-	                    result += tweet.getHashTag(1);
+	                    result += question.getHashTag(1);
 	                    //ajout de l'attaque
-	                    if (i + 1 < tweet.getText().length()) {
-	                        if (tweet.getText().charAt(i) == ' ' & tweet.getText().charAt(i + 1) == '/') {
-	                            for (; i < tweet.getText().length(); i++) {
-	                                result += tweet.getText().charAt(i);
+	                    if (i + 1 < question.getText().length()) {
+	                        if (question.getText().charAt(i) == ' ' & question.getText().charAt(i + 1) == '/') {
+	                            for (; i < question.getText().length(); i++) {
+	                                result += question.getText().charAt(i);
 	                            }
 	                        }
 	                    } else {
@@ -48,7 +51,7 @@ public class PokeAttackCell {
 	                }
 	            }
 	            result += " @";
-	            result += tweet.getScreenName();
+	            result += question.getScreenName();
 	            return result;
 	        } else {
 	            return "Ce n'est pas une attaque";

@@ -68,8 +68,6 @@ public class PokeBot implements Bot {
        Calendar calendar = GregorianCalendar.getInstance();
        calendar.setTime(dateTweet);
 
-       return answer + " // à " + calendar.get(Calendar.HOUR_OF_DAY)
-               + ":" + calendar.get(Calendar.MINUTE)
-               + ":" + calendar.get(Calendar.SECOND);
+       return answer;
     }
 }

@@ -62,16 +62,11 @@ public class PokeBot implements Bot {
                         + " I don't understand your question.";
        } else {
            answer = answer.substring(0, answer.length() - 1);
-<<<<<<< HEAD
        }
 
        Date dateTweet = new Date();
        Calendar calendar = GregorianCalendar.getInstance();
        calendar.setTime(dateTweet);
-=======
-       }       
-       return answer;
->>>>>>> ce04d80c7355095f83af057b7f175bf92bce7858
 
        return answer + " // à " + calendar.get(Calendar.HOUR_OF_DAY)
                + ":" + calendar.get(Calendar.MINUTE)

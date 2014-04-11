@@ -39,35 +39,13 @@ public class CatchPokemonTest {
         public final void initTestFixture() throws Exception {
             // Get the entity manager for the tests.
             // Get the entity manager for the tests.
-            entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
+            entityManagerFactory = Persistence.
+                    createEntityManagerFactory("pokebattlePUTest");
             entityManager = entityManagerFactory.createEntityManager();
 
-<<<<<<< HEAD
-            Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
-=======
-	        dbUnitConnection = new DatabaseConnection(connection);
-	        //Loads the data set from a file
-	        dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
-	                .getContextClassLoader()
-	                .getResourceAsStream("pokemonDataset.xml"));
-	        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
-	        dao= new DAOPokemonJPA(entityManager);
-	        cell = new CatchPokemonCell(entityManager);
-		}
-		
-	    @After
-	    public void finishTestFixture() throws Exception {
-	        entityManager.close();
-	        entityManagerFactory.close();
-	    }
-		
-		@Test
-		public void testCaptureAboHotelBisSuccess() throws CloneNotSupportedException {
-			assertEquals("@CaptainObvious My owner is @CaptainObvious.",
-					cell.ask(new Tweet("CaptainObvious", "@AboHotelBis pokeball !")));
-		}
->>>>>>> 91bfbed4c572ddcf02943e29cce69eb1f1cf8738
-
+            Connection connection = ((EntityManagerImpl)
+                    (entityManager.getDelegate())).getServerSession()
+                    .getAccessor().getConnection();
             dbUnitConnection = new DatabaseConnection(connection);
             //Loads the data set from a file
             dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
@@ -84,14 +62,23 @@ public class CatchPokemonTest {
             entityManagerFactory.close();
         }
 
-        @Test
-        public final void testCaptureAboHotelBisFail()
-                throws CloneNotSupportedException {
-            Pokemon abo = new Pokemon();
-            abo = dao.getById("AboHotelBis");
-            abo.setOwner("Tristan");
-            dao.insert(abo);
-            assertEquals("@CaptainObvious My owner is @Tristan.",
-              cell.ask(new Tweet("CaptainObvious", "@AboHotelBis pokeball !")));
-        }
+            @Test
+            public final void testCaptureAboHotelBisSuccess()
+                    throws CloneNotSupportedException {
+                assertEquals("@CaptainObvious My owner is @CaptainObvious.",
+                        cell.ask(new Tweet("CaptainObvious",
+                                "@AboHotelBis pokeball !")));
+            }
+
+            @Test
+            public final void testCaptureAboHotelBisFail()
+                    throws CloneNotSupportedException {
+                Pokemon abo = new Pokemon();
+                abo = dao.getById("AboHotelBis");
+                abo.setOwner("Tristan");
+                dao.insert(abo);
+                assertEquals("@CaptainObvious My owner is @Tristan.",
+                cell.ask(new Tweet("CaptainObvious",
+                        "@AboHotelBis pokeball !")));
+            }
 }

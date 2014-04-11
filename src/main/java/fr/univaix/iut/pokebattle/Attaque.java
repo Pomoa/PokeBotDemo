@@ -29,13 +29,8 @@ public class Attaque {
     private int Puissance;
     private int Precis;
     
-    
-    public Attaque(int pp, int puiss, int prec, String nomAtt, String typeAtt) {
-        NomAttaque = nomAtt;
-        TypeAttaque = typeAtt;
-    	Pp = pp;
-        Puissance = puiss;
-        Precis = prec;
+    public Attaque() {
+    	
     }
      
 	public String getNomAttaque() {

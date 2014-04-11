@@ -16,10 +16,11 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({
         @NamedQuery(name = Pokemon.FIND_ALL, query = "SELECT p FROM Pokemon p"),
-        @NamedQuery(name = Pokemon.FIND_BY_NOM, query = "SELECT p FROM Pokemon p WHERE p.Name = :fnom"),
-        @NamedQuery(name = Pokemon.FIND_BY_TYPE, query = "SELECT p FROM Pokemon p WHERE p.type1 = :ftype")
+        @NamedQuery(name = Pokemon.FIND_BY_NOM,
+                    query = "SELECT p FROM Pokemon p WHERE p.name = :fnom"),
+        @NamedQuery(name = Pokemon.FIND_BY_TYPE,
+                    query = "SELECT p FROM Pokemon p WHERE p.type1 = :ftype")
         })
- 
 
 public class Pokemon {
 
@@ -28,22 +29,20 @@ public class Pokemon {
     public static final String FIND_BY_NOM = "findPokemonByNom";
 
     @Id
-    private String Name;
+    private String name;
 
     @ManyToMany
     private List<Attaque> attaques;
-    
-    
 
     @Enumerated(EnumType.STRING)
     private Type type1;
 
 
-    public Type getType1() {
+    public final Type getType1() {
         return type1;
     }
 
-    public void setType1(Type types1) {
+    public final void setType1(final Type types1) {
         this.type1 = types1;
     }
 
@@ -55,7 +54,7 @@ public class Pokemon {
 
 
 
-	private int XP;
+    private int XP;
     private int Level;
     private int PVMax;
     private int PVNow;
@@ -63,130 +62,134 @@ public class Pokemon {
 
     private float Height;
     private float Weight;
-    
+
     public Pokemon() {
         // TODO Auto-generated constructor stub
     }
 
     // Fonction qui renvoie vrai si le pokemon n'a pas de maître.
-    public boolean IsSauvage(Pokemon pokemon) {
+    public final boolean IsSauvage(final Pokemon pokemon) {
 
-        if (pokemon.getOwner() == null)
+        if (pokemon.getOwner() == null) {
             return true;
+        }
         return false;
-    }//IsSauvage
+    } //IsSauvage
 
 
     // Getteurs & Setteurs
 
 
-	public List<Attaque> getAttaques() {
-		return attaques;
-	}
-	
-	public boolean isAttackOf (String attack) {
-		for(int i = 0 ; i < attaques.size() ; i++) {
-			if(attaques.get(i).getNomAttaque().toLowerCase().equals(attack.toLowerCase())) return true;
-		}
-		return false;
-	}
-	
-	public boolean isAttackOf (Attaque attack) {
-		for(int i = 0 ; i < attaques.size() ; i++) {
-			if(attaques.get(i).getNomAttaque().equals(attack.getNomAttaque())) return true;
-		}
-		return false;
-	}
+    public final List<Attaque> getAttaques() {
+        return attaques;
+    }
 
-	public String getName() {
-		return Name;
-	}
+    public final boolean isAttackOf(final String attack) {
+        for (int i = 0; i < attaques.size(); i++) {
+            if (attaques.get(i).getNomAttaque().toLowerCase()
+                    .equals(attack.toLowerCase())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public void setName(String name) {
-		Name = name;
-	}
+    public final boolean isAttackOf(final Attaque attack) {
+        for (int i = 0; i < attaques.size(); i++) {
+            if (attaques.get(i).getNomAttaque()
+                    .equals(attack.getNomAttaque())) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public int getPVMax() {
-		return PVMax;
-	}
+    public final String getName() {
+        return name;
+    }
 
-	public void setPVMax(int pVMax) {
-		PVMax = pVMax;
-	}
+    public final void setName(final String nom) {
+        name = nom;
+    }
 
-	public int getPVNow() {
-		return PVNow;
-	}
+    public final int getPVMax() {
+        return PVMax;
+    }
 
-	public void setPVNow(int pVNow) {
-		PVNow = pVNow;
-	}
+    public final void setPVMax(final int pVMax) {
+        PVMax = pVMax;
+    }
 
-	public void setAttaques(List<Attaque> attaques) {
-		this.attaques = attaques;
-	}
+    public final int getPVNow() {
+        return PVNow;
+    }
+
+    public final void setPVNow(final int pVNow) {
+        PVNow = pVNow;
+    }
+
+    public final void setAttaques(final List<Attaque> attaques) {
+        this.attaques = attaques;
+    }
 
 
-    public String getOwner() {
-		return Owner;
-	}
+    public final String getOwner() {
+        return Owner;
+    }
 
-	public void setOwner(String owner) {
-		Owner = owner;
-	}
+    public final void setOwner(final String owner) {
+        Owner = owner;
+    }
 
-    public String getColor() {
+    public final String getColor() {
         return Color;
     }
 
-    public void setColor(String color) {
-    	Color = color;
+    public final void setColor(final String color) {
+        Color = color;
     }
 
-
-
-    public int getXP() {
+    public final int getXP() {
         return XP;
     }
 
-    public void setXP(int xP) {
+    public final void setXP(final int xP) {
         XP = xP;
     }
 
-    public int getLevel() {
+    public final int getLevel() {
         return Level;
     }
 
-    public void setLevel(int level) {
-    	Level = level;
+    public final void setLevel(final int level) {
+        Level = level;
     }
 
 
-    public float getHeight() {
+    public final float getHeight() {
         return Height;
     }
 
-    public void setHeight(float height) {
-    	Height = height;
+    public final void setHeight(final float height) {
+        Height = height;
     }
 
-    public float getWeight() {
+    public final float getWeight() {
         return Weight;
     }
 
-    public void setWeight(float weight) {
-    	Weight = weight;
+    public final void setWeight(final float weight) {
+        Weight = weight;
     }
 
     @Override
-    public String toString() {
-        return "Pokemon [Nom=" + Name + ", Type1=" + type1 + ", Couleur=" + Color
+    public final String toString() {
+        return "Pokemon [Nom=" + name + ", Type1=" + type1 + ","
+                + "Couleur=" + Color
                 + ", Eleveur=" + Owner + ", Experience=" + XP
-                + ", Niveau=" + Level + ", VieMax=" + PVMax + ", VieActuel=" + PVNow
+                + ", Niveau=" + Level + ", VieMax=" + PVMax + ","
+                + "VieActuel=" + PVNow
                 + ", Taille=" + Height + ", Poid="
                 + Weight + "]";
     }
-
-
-
 }

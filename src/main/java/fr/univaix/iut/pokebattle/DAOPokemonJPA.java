@@ -8,21 +8,21 @@ import javax.persistence.TypedQuery;
 
 public class DAOPokemonJPA implements DAOPokemon {
 
-	
     private EntityManager entityManager;
 
-    public DAOPokemonJPA(EntityManager entityManager) {  
+    public DAOPokemonJPA(final EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    public List<Pokemon> findByType(Type type) {
-        TypedQuery<Pokemon> query = entityManager.createNamedQuery(Pokemon.FIND_BY_TYPE, Pokemon.class);
+    public final List<Pokemon> findByType(final Type type) {
+        TypedQuery<Pokemon> query =
+            entityManager.createNamedQuery(Pokemon.FIND_BY_TYPE, Pokemon.class);
         query.setParameter("ftype", type);
         return query.getResultList();
     }
 
     @Override
-    public boolean delete(Pokemon obj) {  
+    public final boolean delete(final Pokemon obj) {
         try {
             EntityTransaction tx = entityManager.getTransaction();
             tx.begin();
@@ -35,18 +35,19 @@ public class DAOPokemonJPA implements DAOPokemon {
     }
 
     @Override
-    public List<Pokemon> findAll() {
-        TypedQuery<Pokemon> query = entityManager.createNamedQuery(Pokemon.FIND_ALL, Pokemon.class);
+    public final List<Pokemon> findAll() {
+        TypedQuery<Pokemon> query = entityManager.
+                createNamedQuery(Pokemon.FIND_ALL, Pokemon.class);
         return query.getResultList();
     }
 
     @Override
-    public Pokemon getById(String id) {
+    public final Pokemon getById(final String id) {
         return entityManager.find(Pokemon.class, id);
     }
 
     @Override
-    public Pokemon insert(Pokemon obj) {
+    public final Pokemon insert(final Pokemon obj) {
         EntityTransaction tx = entityManager.getTransaction();
         tx.begin();
         entityManager.persist(obj);
@@ -55,7 +56,7 @@ public class DAOPokemonJPA implements DAOPokemon {
     }
 
     @Override
-    public boolean update(Pokemon obj) {
+    public final boolean update(final Pokemon obj) {
         try {
             EntityTransaction tx = entityManager.getTransaction();
             tx.begin();
@@ -66,5 +67,4 @@ public class DAOPokemonJPA implements DAOPokemon {
             return false;
         }
     }
-
 }

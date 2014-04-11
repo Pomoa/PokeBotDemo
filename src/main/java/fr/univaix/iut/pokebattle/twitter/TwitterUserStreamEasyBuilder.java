@@ -18,7 +18,8 @@ public class TwitterUserStreamEasyBuilder {
     private Twitter twitter;
     private Bot bot;
 
-    public TwitterUserStreamEasyBuilder(final Credentials credentials, final Twitter twitter, final Bot bot) {
+    public TwitterUserStreamEasyBuilder(final Credentials credentials,
+            final Twitter twitter, final Bot bot) {
         this.credentials = credentials;
         this.twitter = twitter;
         this.bot = bot;
@@ -39,7 +40,8 @@ public class TwitterUserStreamEasyBuilder {
         return new TwitterUserStreamEasy(listener, credentials);
     }
 
-    private void processNewQuestion(final Status status, final Bot bot) throws TwitterException {
+    private void processNewQuestion(final Status status, final Bot bot)
+            throws TwitterException {
         if (isNotANewQuestion(status)) {
             LOGGER.info("Ignored status change");
             return;

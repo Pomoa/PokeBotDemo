@@ -8,63 +8,64 @@ import javax.persistence.TypedQuery;
 
 public class DAOAttaqueJPA implements DAOAttaque {
 
-	   private EntityManager entityManager;
+        private EntityManager entityManager;
 
-	    public DAOAttaqueJPA(EntityManager entityManager) {  
-	        this.entityManager = entityManager;
-	    }
+        public DAOAttaqueJPA(final EntityManager entityManager) {
+            this.entityManager = entityManager;
+        }
 
-	    public List<Attaque> findByType(String type) {
-	        TypedQuery<Attaque> query = entityManager.createNamedQuery(Attaque.FIND_BY_TYPE, Attaque.class);
-	        query.setParameter("ftype", type);
-	        return query.getResultList();
-	    }
-	    
-	    @Override
-	    public boolean delete(Attaque obj) {  
-	        try {
-	            EntityTransaction tx = entityManager.getTransaction();
-	            tx.begin();
-	            entityManager.remove(obj);
-	            tx.commit();
-	            return true;
-	        } catch (Exception e) {
-	            return false;
-	        }
-	    }
+        public final List<Attaque> findByType(final String type) {
+            TypedQuery<Attaque> query =
+            entityManager.createNamedQuery(Attaque.FIND_BY_TYPE, Attaque.class);
 
-	    @Override
-	    public List<Attaque> findAll() {
-	        TypedQuery<Attaque> query = entityManager.createNamedQuery(Attaque.FIND_ALL, Attaque.class);
-	        return query.getResultList();
-	    }
+            query.setParameter("ftype", type);
+            return query.getResultList();
+        }
 
-	    @Override
-	    public Attaque getById(String id) {
-	        return entityManager.find(Attaque.class, id);
-	    }
+        @Override
+        public final boolean delete(final Attaque obj) {
+            try {
+                EntityTransaction tx = entityManager.getTransaction();
+                tx.begin();
+                entityManager.remove(obj);
+                tx.commit();
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
 
-	    @Override
-	    public Attaque insert(Attaque obj) {
-	        EntityTransaction tx = entityManager.getTransaction();
-	        tx.begin();
-	        entityManager.persist(obj);
-	        tx.commit();
-	        return entityManager.find(Attaque.class, obj.getNomAttaque());
-	    }
+        @Override
+        public final List<Attaque> findAll() {
+            TypedQuery<Attaque> query =
+               entityManager.createNamedQuery(Attaque.FIND_ALL, Attaque.class);
+            return query.getResultList();
+        }
 
-	    @Override
-	    public boolean update(Attaque obj) {
-	        try {
-	            EntityTransaction tx = entityManager.getTransaction();
-	            tx.begin();
-	            entityManager.merge(obj);
-	            tx.commit();
-	            return true;
-	        } catch (Exception e) {
-	            return false;
-	        }
-	    }
+        @Override
+        public final Attaque getById(final String id) {
+            return entityManager.find(Attaque.class, id);
+        }
 
-	
+        @Override
+        public final Attaque insert(final Attaque obj) {
+            EntityTransaction tx = entityManager.getTransaction();
+            tx.begin();
+            entityManager.persist(obj);
+            tx.commit();
+            return entityManager.find(Attaque.class, obj.getNomAttaque());
+        }
+
+        @Override
+        public final boolean update(final Attaque obj) {
+            try {
+                EntityTransaction tx = entityManager.getTransaction();
+                tx.begin();
+                entityManager.merge(obj);
+                tx.commit();
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
 }

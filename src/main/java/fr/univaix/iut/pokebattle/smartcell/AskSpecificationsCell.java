@@ -9,28 +9,26 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 
-public class AskSpecificationsCell implements SmartCell{
-	
-	private EntityManager em;
-    public AskSpecificationsCell(EntityManager em) {
-    	this.em = em;
+public class AskSpecificationsCell implements SmartCell {
+    private EntityManager em;
+    public AskSpecificationsCell(final EntityManager em) {
+        this.em = em;
     }
 
-    
     @Override
-    public String ask(Tweet question) {
-    	
-    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
-    	Pokemon pokemon = new Pokemon();
+    public final String ask(final Tweet question) {
+        DAOPokemonJPA daopok = new DAOPokemonJPA(em);
+        Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
-        
-		String asking = question.getText().toUpperCase();
+        String asking = question.getText().toUpperCase();
 
         if (containsLevel(asking)) {
-        	System.out.println(pokemon.getLevel());
-            return "@" + question.getScreenName() + " #level = " + pokemon.getLevel();           
+            System.out.println(pokemon.getLevel());
+            return "@" + question.getScreenName()
+                       + " #level = " + pokemon.getLevel();
          } else if (containsPV(asking)) {
-            return "@" + question.getScreenName() + " #PV = " + pokemon.getPVNow() + "/" + pokemon.getPVMax();
+            return "@" + question.getScreenName()
+                   + " #PV = " + pokemon.getPVNow() + "/" + pokemon.getPVMax();
          } else if (containsXP(asking)) {
             return "@" + question.getScreenName() + " #XP = " + pokemon.getXP();
          } else {
@@ -60,7 +58,7 @@ public class AskSpecificationsCell implements SmartCell{
         return false;
     }
 
-    public boolean containsXP(final String asking) {
+    public final boolean containsXP(final String asking) {
         if (asking.contains("#STAT #XP")
             || asking.contains("#STAT#XP")
             || asking.contains(" #STAT#XP")

@@ -21,15 +21,15 @@ import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class PokeAttackCellTest {
-	
-	private static EntityManager entityManager;
+
+    private static EntityManager entityManager;
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
-	
-	@BeforeClass
-	public static void initTestFixture() throws Exception {
-	    // Get the entity manager for the tests.
+
+    @BeforeClass
+    public static void initTestFixture() throws Exception {
+        // Get the entity manager for the tests.
         // Get the entity manager for the tests.
         entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
@@ -41,36 +41,38 @@ public class PokeAttackCellTest {
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
                 .getContextClassLoader()
                 .getResourceAsStream("pokemonDataset.xml"));
-	}
-	
+    }
+
     @AfterClass
     public static void finishTestFixture() throws Exception {
         entityManager.close();
         entityManagerFactory.close();
     }
-	
-	@Before
-	public void setUp() throws Exception {
-	    //Clean the data from previous test and insert new data test.
-	    DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
-	}
 
-	PokeAttackCell cell = new PokeAttackCell(entityManager);
+    @Before
+    public void setUp() throws Exception {
+        //Clean the data from previous test and insert new data test.
+        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
+    }
+
+    PokeAttackCell cell = new PokeAttackCell(entityManager);
     Pokemon poke = new Pokemon();
-    
+
     @Test
     public final void testNorm() {
         Tweet tweet = new Tweet(poke.getOwner(),
         "@abohotelbis #attack #ligotage @pika /cc @thepomoaa");
-        assertEquals("@pika #attack #ligotage /cc @thepomoaa @" + poke.getOwner(),
+        assertEquals("@pika #attack #ligotage /cc @thepomoaa @"
+                     + poke.getOwner(),
                 cell.ask(tweet));
     }
-    
+
     @Test
     public final void testNormbis() {
         Tweet tweet = new Tweet(poke.getOwner(),
         "@abohotelbis #attack #grozyeux @pika /cc @thepomoaa");
-        assertEquals("@pika #attack #grozyeux /cc @thepomoaa @" + poke.getOwner(),
+        assertEquals("@pika #attack #grozyeux /cc @thepomoaa @"
+                     + poke.getOwner(),
                 cell.ask(tweet));
     }
 
@@ -78,8 +80,8 @@ public class PokeAttackCellTest {
     public final void testNotOwner() {
         Tweet tweet = new Tweet("nedseb",
                 "@abohotelbis #attack #ligotage @pika");
-        assertEquals("Sorry, you're not my owner. My owner is " + poke.getOwner(),
-                cell.ask(tweet));
+        assertEquals("Sorry, you're not my owner. My owner is "
+                     + poke.getOwner(), cell.ask(tweet));
     }
 
     @Test
@@ -88,17 +90,18 @@ public class PokeAttackCellTest {
         assertEquals(null, cell.ask(
                 tweet));
     }
-    
+
     @Test
     public final void testNotAnAttack() {
         Tweet tweet = new Tweet(poke.getOwner(), "@abohotelbis #coucou");
         assertEquals(null, cell.ask(
                 tweet));
     }
-    
+
     @Test
     public final void testDontKnowAttack() {
-    	Tweet tweet = new Tweet(poke.getOwner(), "@abohotelbis #attack #explosion @pika");
-    	assertEquals("Je ne connais pas cette attaque", cell.ask(tweet));
+        Tweet tweet = new Tweet(poke.getOwner(),
+                "@abohotelbis #attack #explosion @pika");
+        assertEquals("Je ne connais pas cette attaque", cell.ask(tweet));
     }
 }

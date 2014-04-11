@@ -22,14 +22,14 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class HelloCellTest {
 
-	private static EntityManager entityManager;
+    private static EntityManager entityManager;
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
-	
-	@BeforeClass
-	public static void initTestFixture() throws Exception {
-	    // Get the entity manager for the tests.
+
+    @BeforeClass
+    public static void initTestFixture() throws Exception {
+        // Get the entity manager for the tests.
         // Get the entity manager for the tests.
         entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
@@ -41,41 +41,44 @@ public class HelloCellTest {
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
                 .getContextClassLoader()
                 .getResourceAsStream("pokemonDataset.xml"));
-	}
-	
+    }
+
     @AfterClass
     public static void finishTestFixture() throws Exception {
         entityManager.close();
         entityManagerFactory.close();
     }
-	
-	@Before
-	public void setUp() throws Exception {
-	    //Clean the data from previous test and insert new data test.
-	    DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
-	}
-	
+
+    @Before
+    public final void setUp() throws Exception {
+        //Clean the data from previous test and insert new data test.
+        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
+    }
+
     HelloCell cell = new HelloCell(entityManager);
 
 
     @Test
     public final void testAskHelloFromFollower()
                 throws CloneNotSupportedException {
-        assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.", cell.ask(new Tweet("Tristan", "Hi, how are you ?")));
+        assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.",
+                cell.ask(new Tweet("Tristan", "Hi, how are you ?")));
 
     }
 
     @Test
     public final void testAskJustHelloFromFollower()
             throws CloneNotSupportedException {
-        assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.", cell.ask(new Tweet("Tristan", "Hello")));
+        assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.",
+                cell.ask(new Tweet("Tristan", "Hello")));
 
     }
 
     @Test
     public final void testAskJustHiFromFollower()
             throws CloneNotSupportedException {
-        assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.", cell.ask(new Tweet("Tristan", "Hi")));
+        assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.",
+                cell.ask(new Tweet("Tristan", "Hi")));
 
     }
 

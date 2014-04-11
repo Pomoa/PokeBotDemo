@@ -24,7 +24,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class DAOPokemonJPATest {
 
-	private static EntityManager entityManager;
+    private static EntityManager entityManager;
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
@@ -53,38 +53,38 @@ public class DAOPokemonJPATest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public final void setUp() throws Exception {
         //Clean the data from previous test and insert new data test.
         DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
     }
 
     @Test
-    public void testFindByType() throws Exception {
+    public final void testFindByType() throws Exception {
         List<Pokemon> pokemons = dao.findByType(Type.POISON);
         assertThat(pokemons.get(0).getName()).isEqualTo("AboHotelBis");
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public final void testFindAll() throws Exception {
         List<Pokemon> pokemons = dao.findAll();
         assertThat(pokemons.get(1).getName()).isEqualTo("AboHotelBis");
         assertThat(pokemons.get(0).getName()).isEqualTo("Rattata");
     }
 
     @Test
-    public void testGetById() throws Exception {
+    public final void testGetById() throws Exception {
         assertThat(dao.getById("AboHotelBis").getName()).isEqualTo("AboHotelBis");
         assertThat(dao.getById("Rattata").getName()).isEqualTo("Rattata");
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public final void testDelete() throws Exception {
         dao.delete(dao.getById("AboHotelBis"));
         assertThat(dao.getById("AboHotelBis")).isNull();
     }
 
     @Test
-    public void testInsert() throws Exception {
+    public final void testInsert() throws Exception {
         Pokemon pika = new Pokemon();
         pika.setName("Pikachu");
         pika.setType1(Type.ELECTRIC);
@@ -94,7 +94,7 @@ public class DAOPokemonJPATest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public final void testUpdate() throws Exception {
         Pokemon abo = dao.getById("AboHotelBis");
         assertThat(abo.getLevel()).isGreaterThan(0);
         abo.setLevel(-2);

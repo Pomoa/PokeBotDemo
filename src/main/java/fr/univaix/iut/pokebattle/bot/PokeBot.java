@@ -22,34 +22,31 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 public class PokeBot implements Bot {
-	
-	private String em;
-    
-	private final SmartCell[] smartCells;
-	
-	public PokeBot(String enma){
-		this.em = enma;
-    	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory(em);
-    	EntityManager em = emf.createEntityManager();
-        
-		smartCells = new SmartCell[] {
-				new HelloCell(em),
-				new OwnerCell(em),
-				new CatchPokemonCell(em),
-				new AskSpecificationsCell(em)
-		};
-	
-	}
-	
-   /** final SmartCell[] smartCells = new SmartCell[] {
-		new HelloCell(),
-		new OwnerCell(),
-		new CatchPokemonCell(),
-		new AskSpecificationsCell()
-	};**/
-   
-              
+
+    private String em;
+
+    private final SmartCell[] smartCells;
+
+    public PokeBot(String enma){
+        this.em = enma;
+        EntityManagerFactory emf = Persistence
+                .createEntityManagerFactory(em);
+        EntityManager em = emf.createEntityManager();
+
+        smartCells = new SmartCell[] {
+                new HelloCell(em),
+                new OwnerCell(em),
+                new CatchPokemonCell(em),
+                new AskSpecificationsCell(em)
+        };
+    }
+
+    /** final SmartCell[] smartCells = new SmartCell[] {.
+    new HelloCell(),
+    new OwnerCell(),
+    new CatchPokemonCell(),
+    new AskSpecificationsCell()
+    };**/
 
     public final String ask(final Tweet question) {
         String answer = "";
@@ -59,7 +56,7 @@ public class PokeBot implements Bot {
                 }
 
             }
-       
+
        if ("".equals(answer)) {
            answer = "@" + question.getScreenName()
                         + " I don't understand your question.";
@@ -67,12 +64,12 @@ public class PokeBot implements Bot {
            answer = answer.substring(0, answer.length() - 1);
        }
 
-       Date DateTweet = new Date ();
+       Date dateTweet = new Date();
        Calendar calendar = GregorianCalendar.getInstance();
-       calendar.setTime(DateTweet);
-       
-       return answer + " // à " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND);
+       calendar.setTime(dateTweet);
 
+       return answer + " // à " + calendar.get(Calendar.HOUR_OF_DAY)
+               + ":" + calendar.get(Calendar.MINUTE)
+               + ":" + calendar.get(Calendar.SECOND);
     }
-
 }

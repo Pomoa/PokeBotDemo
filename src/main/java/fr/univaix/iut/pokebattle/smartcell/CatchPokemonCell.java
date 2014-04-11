@@ -15,34 +15,30 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
  */
 
 
-public class CatchPokemonCell implements SmartCell{
+public class CatchPokemonCell implements SmartCell {
 
-	private EntityManager em;
-    public CatchPokemonCell(EntityManager em) {
-    	this.em = em;
+    private EntityManager em;
+    public CatchPokemonCell(final EntityManager em) {
+        this.em = em;
     }
 
-    
     @Override
-    public String ask(Tweet question) {
-    	
-    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
-    	Pokemon pokemon = new Pokemon();
+    public final String ask(final Tweet question) {
+        DAOPokemonJPA daopok = new DAOPokemonJPA(em);
+        Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
-		
-		String asking = question.getText().toUpperCase();
-		if(asking.contains("POKEBALL"))
-		{
-	        
-	        if (pokemon.getOwner() == null) {
-	        	pokemon.setOwner(question.getScreenName());
-	        	daopok.update(pokemon);
-	        	return "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
-	        	
-	        }
+        String asking = question.getText().toUpperCase();
+        if (asking.contains("POKEBALL")) {
+            if (pokemon.getOwner() == null) {
+                pokemon.setOwner(question.getScreenName());
+                daopok.update(pokemon);
+                return "@" + question.getScreenName()
+                           + " My owner is @" + pokemon.getOwner() + ".";
+            }
 
-	        return "@" + question.getScreenName() + " My owner is @" + pokemon.getOwner() + ".";
-		}
-		return null;
-	}
+            return "@" + question.getScreenName()
+                       + " My owner is @" + pokemon.getOwner() + ".";
+        }
+        return null;
+    }
 }

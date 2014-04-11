@@ -8,23 +8,20 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class HelloCell implements SmartCell {
 
-	private EntityManager em;
+    private EntityManager em;
     public HelloCell(EntityManager em) {
-    	this.em = em;
+        this.em = em;
     }
 
-    
     @Override
-    public String ask(Tweet question) {
-    	
-    	DAOPokemonJPA daopok = new DAOPokemonJPA(em);
-    	Pokemon pokemon = new Pokemon();
+    public final String ask(final Tweet question) {
+        DAOPokemonJPA daopok = new DAOPokemonJPA(em);
+        Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
-    	
-        
         String asking = question.getText().toUpperCase();
         if (containsHello(asking)) {
-                return "@" + question.getScreenName() + " Hi @" + question.getScreenName()
+                return "@" + question.getScreenName()
+                       + " Hi @" + question.getScreenName()
                        + ", I am " + pokemon.getName() + ".";
         }
         return null;

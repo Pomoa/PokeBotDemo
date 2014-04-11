@@ -24,7 +24,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 public class DAOAttaqueJPATest {
 
-	private static EntityManager entityManager;
+    private static EntityManager entityManager;
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
@@ -53,19 +53,19 @@ public class DAOAttaqueJPATest {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public final void setUp() throws Exception {
         //Clean the data from previous test and insert new data test.
         DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
     }
 
     @Test
-    public void testFindByType() throws Exception {
+    public final void testFindByType() throws Exception {
         List<Attaque> attaques = dao.findByType("POISON");
         assertThat(attaques.get(0).getNomAttaque()).isEqualTo("DardVenin");
     }
 
     @Test
-    public void testFindAll() throws Exception {
+    public final void testFindAll() throws Exception {
         List<Attaque> attaques = dao.findAll();
         assertThat(attaques.get(0).getNomAttaque()).isEqualTo("Ligotage");
         assertThat(attaques.get(1).getNomAttaque()).isEqualTo("GrozYeux");
@@ -73,19 +73,19 @@ public class DAOAttaqueJPATest {
     }
 
     @Test
-    public void testGetById() throws Exception {
+    public final void testGetById() throws Exception {
         assertThat(dao.getById("GrozYeux").getNomAttaque()).isEqualTo("GrozYeux");
         assertThat(dao.getById("Ligotage").getNomAttaque()).isEqualTo("Ligotage");
     }
 
     @Test
-    public void testDelete() throws Exception {
+    public final void testDelete() throws Exception {
         dao.delete(dao.getById("DardVenin"));
         assertThat(dao.getById("DardVenin")).isNull();
     }
 
     @Test
-    public void testInsert() throws Exception {
+    public final void testInsert() throws Exception {
         Attaque acide = new Attaque();
         acide.setNomAttaque("Acide");
         acide.setTypeAttaque("POISON");
@@ -95,7 +95,7 @@ public class DAOAttaqueJPATest {
     }
 
     @Test
-    public void testUpdate() throws Exception {
+    public final void testUpdate() throws Exception {
         Attaque ligo = dao.getById("Ligotage");
         assertThat(ligo.getPp()).isGreaterThan(0);
         ligo.setPp(-20);

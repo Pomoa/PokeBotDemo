@@ -25,16 +25,16 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class OwnerCellTest {
 
-	private static EntityManager entityManager;
+    private static EntityManager entityManager;
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
-    
+
     private DAOPokemon dao = new DAOPokemonJPA(entityManager);
-	
-	@BeforeClass
-	public static void initTestFixture() throws Exception {
-	    // Get the entity manager for the tests.
+
+    @BeforeClass
+    public static void initTestFixture() throws Exception {
+        // Get the entity manager for the tests.
         // Get the entity manager for the tests.
         entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
@@ -46,35 +46,37 @@ public class OwnerCellTest {
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
                 .getContextClassLoader()
                 .getResourceAsStream("pokemonDataset.xml"));
-	}
-	
+    }
+
     @AfterClass
     public static void finishTestFixture() throws Exception {
         entityManager.close();
         entityManagerFactory.close();
     }
-	
-	@Before
-	public void setUp() throws Exception {
-	    //Clean the data from previous test and insert new data test.
-	    DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
-	}
-	
+
+    @Before
+    public void setUp() throws Exception {
+        //Clean the data from previous test and insert new data test.
+        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
+    }
+
     OwnerCell cell = new OwnerCell(entityManager);
 
 
     @Test
-    public void testAskNoOwner() throws CloneNotSupportedException {      
-        assertEquals("@Tristan I don't have owner.", cell.ask(new Tweet("Tristan", "Do you have an owner ?")));
+    public final void testAskNoOwner() throws CloneNotSupportedException {
+        assertEquals("@Tristan I don't have owner.",
+                cell.ask(new Tweet("Tristan", "Do you have an owner ?")));
 
     }
-    
+
     @Test
-    public void testASkOwner() throws CloneNotSupportedException {
-    	Pokemon abo = new Pokemon();
-    	abo = dao.getById("AboHotelBis");
-    	abo.setOwner("CaptainObvious");
-    	dao.insert(abo);
-        assertEquals("@Tristan My owner is @CaptainObvious.", cell.ask(new Tweet("Tristan", "Do you have an owner ?")));
+    public final void testASkOwner() throws CloneNotSupportedException {
+        Pokemon abo = new Pokemon();
+        abo = dao.getById("AboHotelBis");
+        abo.setOwner("CaptainObvious");
+        dao.insert(abo);
+        assertEquals("@Tristan My owner is @CaptainObvious.",
+                cell.ask(new Tweet("Tristan", "Do you have an owner ?")));
     }
 }

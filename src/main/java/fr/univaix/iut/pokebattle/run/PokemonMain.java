@@ -14,7 +14,7 @@ public class PokemonMain {
 
     public static void main(String[] args) {
         try {
-            BotRunner.runBot(new PokeBot(), "twitter4j.properties");
+            BotRunner.runBot(new PokeBot("pokebattlePU"), "twitter4j.properties");
             Main.createDatabase();
         } catch (TUSEException e) {
             LOGGER.error("Erreur sérieuse dans le BotRunner", e);

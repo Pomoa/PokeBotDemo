@@ -61,27 +61,27 @@ public class DAOAttaqueJPATest {
     @Test
     public void testFindByType() throws Exception {
         List<Attaque> attaques = dao.findByType("POISON");
-        assertThat(attaques.get(0).getNomAttaque()).isEqualTo("Dard-Venin");
+        assertThat(attaques.get(0).getNomAttaque()).isEqualTo("DardVenin");
     }
 
     @Test
     public void testFindAll() throws Exception {
         List<Attaque> attaques = dao.findAll();
         assertThat(attaques.get(0).getNomAttaque()).isEqualTo("Ligotage");
-        assertThat(attaques.get(1).getNomAttaque()).isEqualTo("Groz'Yeux");
-        assertThat(attaques.get(2).getNomAttaque()).isEqualTo("Dard-Venin");
+        assertThat(attaques.get(1).getNomAttaque()).isEqualTo("GrozYeux");
+        assertThat(attaques.get(2).getNomAttaque()).isEqualTo("DardVenin");
     }
 
     @Test
     public void testGetById() throws Exception {
-        assertThat(dao.getById("Groz'Yeux").getNomAttaque()).isEqualTo("Groz'Yeux");
+        assertThat(dao.getById("GrozYeux").getNomAttaque()).isEqualTo("GrozYeux");
         assertThat(dao.getById("Ligotage").getNomAttaque()).isEqualTo("Ligotage");
     }
 
     @Test
     public void testDelete() throws Exception {
-        dao.delete(dao.getById("Ligotage"));
-        assertThat(dao.getById("Ligotage")).isNull();
+        dao.delete(dao.getById("DardVenin"));
+        assertThat(dao.getById("DardVenin")).isNull();
     }
 
     @Test

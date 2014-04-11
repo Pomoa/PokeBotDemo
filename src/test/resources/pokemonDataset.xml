@@ -39,7 +39,7 @@
         <field name="TYPEATTAQUE" xsi:nil="true"></field>
     </row>
     <row>
-        <field name="NOMATTAQUE">Groz'Yeux</field>
+        <field name="NOMATTAQUE">GrozYeux</field>
         <field name="PP">30</field>
         <field name="PRECIS">100</field>
         <field name="PUISSANCE">0</field>
@@ -49,7 +49,7 @@
     <table_data name="POKEMON_ATTAQUE">
     <row>
         <field name="Pokemon_NAME">AboHotelBis</field>
-        <field name="attaques_NOMATTAQUE">Groz'Yeux</field>
+        <field name="attaques_NOMATTAQUE">GrozYeux</field>
     </row>
         <row>
         <field name="Pokemon_NAME">AboHotelBis</field>
@@ -114,14 +114,14 @@
         <value>NORMAL</value>
     </row>
     <row>
-        <value>Groz'Yeux</value>
+        <value>GrozYeux</value>
         <value>30</value>
         <value>100</value>
         <value>0</value>
         <value>NORMAL</value>
     </row>
     <row>
-        <value>Dard-Venin</value>
+        <value>DardVenin</value>
         <value>35</value>
         <value>100</value>
         <value>15</value>
@@ -133,11 +133,11 @@
 	    <column>attaques_NOMATTAQUE</column>
     <row>
         <value>AboHotelBis</value>
-        <value>Groz'Yeux</value>
+        <value>GrozYeux</value>
     </row>
     <row>
         <value>AboHotelBis</value>
-        <value>Dard-Venin</value>
+        <value>DardVenin</value>
     </row>
     </table>
 </dataset>-->
@@ -152,14 +152,14 @@
       
     <ATTAQUE NOMATTAQUE="Ligotage" PP="20" PRECIS="85" PUISSANCE="15" TYPEATTAQUE="NORMAL" />
     
-    <ATTAQUE NOMATTAQUE="Groz'Yeux" PP="30" PRECIS="100" PUISSANCE="0" TYPEATTAQUE="NORMAL" />
+    <ATTAQUE NOMATTAQUE="GrozYeux" PP="30" PRECIS="100" PUISSANCE="0" TYPEATTAQUE="NORMAL" />
     
-    <ATTAQUE NOMATTAQUE="Dard-Venin" PP="35 " PRECIS="100" PUISSANCE="15" TYPEATTAQUE="POISON" />
+    <ATTAQUE NOMATTAQUE="DardVenin" PP="35 " PRECIS="100" PUISSANCE="15" TYPEATTAQUE="POISON" />
     
-    <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Groz'Yeux" />
+    <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="GrozYeux" />
     
-    <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Dard-Venin" />
+    <!-- <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="DardVenin" /> -->
     
-    <!-- <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Ligotage" />-->
+    <POKEMON_ATTAQUE Pokemon_NAME="AboHotelBis" attaques_NOMATTAQUE="Ligotage" />
     
 </dataset>

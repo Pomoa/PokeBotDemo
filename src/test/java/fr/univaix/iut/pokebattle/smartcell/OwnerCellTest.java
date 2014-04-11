@@ -36,10 +36,13 @@ public class OwnerCellTest {
     public static void initTestFixture() throws Exception {
         // Get the entity manager for the tests.
         // Get the entity manager for the tests.
-        entityManagerFactory = Persistence.createEntityManagerFactory("pokebattlePUTest");
+        entityManagerFactory = Persistence.
+                createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
 
-        Connection connection = ((EntityManagerImpl) (entityManager.getDelegate())).getServerSession().getAccessor().getConnection();
+        Connection connection = ((EntityManagerImpl)
+                (entityManager.getDelegate())).getServerSession().
+                getAccessor().getConnection();
 
         dbUnitConnection = new DatabaseConnection(connection);
         //Loads the data set from a file

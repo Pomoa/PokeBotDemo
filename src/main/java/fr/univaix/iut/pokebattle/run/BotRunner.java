@@ -11,8 +11,10 @@ import java.io.InputStream;
 public class BotRunner {
 private BotRunner() { }
 
-    public static void runBot(final Bot bot, final String credentialsFileName) throws TUSEException {
-        try (InputStream inputStream = getResourceAsStream(credentialsFileName)) {
+    public static void runBot(final Bot bot, final String credentialsFileName)
+            throws TUSEException {
+        try (InputStream inputStream =
+                    getResourceAsStream(credentialsFileName)) {
             Credentials credentials = Credentials.loadCredentials(inputStream);
             TwitterBot twitterBot = new TwitterBot(bot, credentials);
             twitterBot.startBot();

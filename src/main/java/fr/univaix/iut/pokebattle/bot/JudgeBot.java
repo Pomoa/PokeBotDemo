@@ -21,7 +21,7 @@ public class JudgeBot implements Bot {
      * @return An answer... or null if it doesn't get it.
      */
     @Override
-    public String ask(Tweet question) {
+    public final String ask(final Tweet question) {
         for (SmartCell cell : smartCells) {
             String answer = cell.ask(question);
             if (answer != null) {

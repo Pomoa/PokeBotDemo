@@ -83,6 +83,20 @@ public class Pokemon {
 	public List<Attaque> getAttaques() {
 		return attaques;
 	}
+	
+	public boolean isAttackOf (String attack) {
+		for(int i = 0 ; i < attaques.size() ; i++) {
+			if(attaques.get(i).getNomAttaque().equals(attack)) return true;
+		}
+		return false;
+	}
+	
+	public boolean isAttackOf (Attaque attack) {
+		for(int i = 0 ; i < attaques.size() ; i++) {
+			if(attaques.get(i).getNomAttaque().equals(attack.getNomAttaque())) return true;
+		}
+		return false;
+	}
 
 	public String getName() {
 		return Name;

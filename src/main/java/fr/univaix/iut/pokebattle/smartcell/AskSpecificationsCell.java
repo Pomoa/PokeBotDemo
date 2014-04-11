@@ -34,7 +34,6 @@ public class AskSpecificationsCell implements SmartCell{
          } else if (containsXP(asking)) {
             return "@" + question.getScreenName() + " #XP = " + pokemon.getXP();
          } else {
-            System.out.println(pokemon.getLevel());
             return null;
          }
      }

@@ -2,7 +2,9 @@ package fr.univaix.iut.pokebattle.smartcell;
 
 import static org.junit.Assert.assertEquals;
 
+import java.awt.List;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -18,6 +20,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.Attaque;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
@@ -55,11 +58,10 @@ public class PokeAttackCellTest {
 	    //Clean the data from previous test and insert new data test.
 	    DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
 	}
-	
-	
-    PokeAttackCell cell = new PokeAttackCell(entityManager);
-    Pokemon poke = new Pokemon();
 
+	PokeAttackCell cell = new PokeAttackCell(entityManager);
+    Pokemon poke = new Pokemon();
+    
     @Test
     public final void test() {
         Tweet tweet = new Tweet(poke.getOwner(),
@@ -79,19 +81,20 @@ public class PokeAttackCellTest {
     @Test
     public final void testNotOwnerNotAnAttack() {
         Tweet tweet = new Tweet("nedseb", "@abohotelbis #coucou");
-        assertEquals("Sorry, you're not my owner. My owner is " + poke.getOwner(), cell.ask(
+        assertEquals(null, cell.ask(
                 tweet));
     }
     
     @Test
-    public final void test4() {
+    public final void testNotAnAttack() {
         Tweet tweet = new Tweet(poke.getOwner(), "@abohotelbis #coucou");
-        assertEquals("Ce n'est pas une attaque", cell.ask(
+        assertEquals(null, cell.ask(
                 tweet));
     }
     
     @Test
-    public final void test5() {
+    public final void testDontKnowAttack() {
     	Tweet tweet = new Tweet(poke.getOwner(), "@abohotelbis #attack #explosion @pika");
+    	assertEquals("Je ne connais pas cette attaque", cell.ask(tweet));
     }
 }

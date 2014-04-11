@@ -22,11 +22,15 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 
 public class PokeBot implements Bot {
-	final SmartCell[] smartCells;
 	
-	public PokeBot(){
+	private String em;
+    
+	private final SmartCell[] smartCells;
+	
+	public PokeBot(String enma){
+		this.em = enma;
     	EntityManagerFactory emf = Persistence
-    			.createEntityManagerFactory("pokebattlePU");
+    			.createEntityManagerFactory(em);
     	EntityManager em = emf.createEntityManager();
         
 		smartCells = new SmartCell[] {

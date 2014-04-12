@@ -23,7 +23,6 @@ public class AskSpecificationsCell implements SmartCell {
         String asking = question.getText().toUpperCase();
 
         if (containsLevel(asking)) {
-            System.out.println(pokemon.getLevel());
             return "@" + question.getScreenName()
                        + " #level = " + pokemon.getLevel();
          } else if (containsPV(asking)) {

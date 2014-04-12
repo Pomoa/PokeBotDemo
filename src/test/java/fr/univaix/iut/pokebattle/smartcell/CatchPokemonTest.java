@@ -65,7 +65,7 @@ public class CatchPokemonTest {
             @Test
             public final void testCaptureAboHotelBisSuccess()
                     throws CloneNotSupportedException {
-                assertEquals("@CaptainObvious My owner is @CaptainObvious.",
+                assertEquals("@CaptainObvious You are now my owner.",
                         cell.ask(new Tweet("CaptainObvious",
                                 "@AboHotelBis pokeball !")));
             }
@@ -77,7 +77,7 @@ public class CatchPokemonTest {
                 abo = dao.getById("AboHotelBis");
                 abo.setOwner("Tristan");
                 dao.insert(abo);
-                assertEquals("@CaptainObvious My owner is @Tristan.",
+                assertEquals("@CaptainObvious Sorry but my owner is @Tristan.",
                 cell.ask(new Tweet("CaptainObvious",
                         "@AboHotelBis pokeball !")));
             }

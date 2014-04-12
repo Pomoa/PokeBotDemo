@@ -58,13 +58,11 @@ public class TwitterUserStreamEasyBuilder {
             Date dateTweet = new Date();
             Calendar calendar = GregorianCalendar.getInstance();
 
-            calendar.setTime(dateTweet);
-            twitter.updateStatus(response + " // à " + calendar.get(Calendar.HOUR_OF_DAY) + ":" + calendar.get(Calendar.MINUTE) + ":" + calendar.get(Calendar.SECOND) + " #PokeBattle");
-            calendar.setTime(dateTweet);
+            calendar.setTime(dateTweet);;
             twitter.updateStatus(response + " // à "
                     + calendar.get(Calendar.HOUR_OF_DAY) + ":"
                     + calendar.get(Calendar.MINUTE) + ":" + calendar.
-                    get(Calendar.SECOND) + "#PokeBattle");
+                    get(Calendar.SECOND) + " #PokeBattle");
         }
     }
 

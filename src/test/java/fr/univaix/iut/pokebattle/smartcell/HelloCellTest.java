@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.bot.PokeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class HelloCellTest {
@@ -82,6 +83,13 @@ public class HelloCellTest {
             throws CloneNotSupportedException {
         assertEquals("@Tristan Hi @Tristan, I am AboHotelBis.",
                 cell.ask(new Tweet("Tristan", "Hi")));
+
+    }
+    
+    @Test
+    public final void testNoQuestion() throws CloneNotSupportedException {
+        assertEquals("@Tristan I don't understand your question.",
+                cell.ask(new Tweet("Tristan", "This is not a question")));
 
     }
 

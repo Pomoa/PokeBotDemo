@@ -24,7 +24,9 @@ public class HelloCell implements SmartCell {
                        + " Hi @" + question.getScreenName()
                        + ", I am " + pokemon.getName() + ".";
         }
-        return null;
+        else {
+        	return "@" + question.getScreenName() + " I don't understand your question.";
+        }
 
     }
 

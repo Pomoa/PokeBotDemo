@@ -23,21 +23,18 @@ import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 public class PokeBot implements Bot {
 
-    private String em;
+    private EntityManager em;
 
     private final SmartCell[] smartCells;
 
-    public PokeBot(String enma){
+    public PokeBot(EntityManager enma){
         this.em = enma;
-        EntityManagerFactory emf = Persistence
-                .createEntityManagerFactory(em);
-        EntityManager em = emf.createEntityManager();
 
         smartCells = new SmartCell[] {
-                new HelloCell(em),
+        		new CatchPokemonCell(em),
+        		new AskSpecificationsCell(em),
                 new OwnerCell(em),
-                new CatchPokemonCell(em),
-                new AskSpecificationsCell(em)
+                new HelloCell(em)
         };
     }
 

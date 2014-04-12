@@ -1,3 +1,10 @@
+/**
+ *Package qui contient toute la BD du Pokemon ainsi que sa création.
+ *
+ * @since 1.0
+ * @see java.awt
+ */
+
 package fr.univaix.iut.pokebattle;
 
 import javax.persistence.Entity;
@@ -6,70 +13,171 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 
+/**
+ * @author capybaradesalpes
+ * @Entity
+ *
+ */
 @Entity
 @NamedQueries({
         @NamedQuery(name = Attaque.FIND_ALL, query = "SELECT a FROM Attaque a"),
         @NamedQuery(name = Attaque.FIND_BY_TYPE,
-             query = "SELECT a FROM Attaque a WHERE a.TypeAttaque = :ftype"),
+             query = "SELECT a FROM Attaque a WHERE a.typeAttaque = :ftype"),
         @NamedQuery(name = Attaque.FIND_BY_NOM,
              query = "SELECT a FROM Attaque a WHERE a.nomAttaque = :fnom")
 })
 
 public class Attaque {
 
+    /**
+     *@param String FIND_BY_TYPE
+     *@return Toutes les attaques du même type
+     *
+     */
+
     public static final String FIND_BY_TYPE = "findAttaqueByType";
+
+    /**
+     *@param String FIND_ALL
+     *@return Toutes les attaques
+     */
+
     public static final String FIND_ALL = "findAllAttaque";
+
+    /**
+     *@param String FIND_BY_NOM
+     *@return Un attaque
+     *
+     */
+
     public static final String FIND_BY_NOM = "findAttaqueByNom";
+
+    /**
+     *@param Id
+     *@return Id (Nom de l'attaque)
+     *
+     */
 
     @Id
     private String nomAttaque;
 
-    /* @Enumerated(EnumType.STRING) */
-    private String TypeAttaque;
 
-    private int Pp;
-    private int Puissance;
-    private int Precis;
+    /**
+     *@param typeAttaque
+     *@return typeAttaque
+     *@Enumerated(EnumType.STRING)
+     *
+     */
+    private String typeAttaque;
+
+    /**
+     *@param pp
+     *@return pp
+     *
+     */
+    private int pp;
+
+    /**
+     *@param puissance
+     *@return puissance
+     *
+     */
+    private int puissance;
+
+    /**
+     *@param precision
+     *@return precision
+     *
+     */
+    private int precis;
+
+    /**
+     * Constructeur par défaut d'Attaque.
+     *@param
+     *@return
+     *
+     */
 
     public Attaque() {
 
     }
 
+    /**
+     *@param
+     *@return nomAttaque
+     *
+     */
     public final String getNomAttaque() {
         return nomAttaque;
     }
-    public final void setNomAttaque(final String nom_Attaque) {
-        nomAttaque = nom_Attaque;
+
+    /**
+     * @param nomattaque
+     */
+    public final void setNomAttaque(final String nomattaque) {
+        this.nomAttaque = nomattaque;
     }
+
+    /**
+     * @return typeAttaque
+     */
     public final String getTypeAttaque() {
-            return TypeAttaque;
+            return typeAttaque;
     }
-    public final void setTypeAttaque(final String typeAttaque) {
-        TypeAttaque = typeAttaque;
+
+    /**
+     * @param typeAttaque
+     */
+    public final void setTypeAttaque(final String typeattaque) {
+        this.typeAttaque = typeattaque;
     }
+
+    /**
+     * @return pp
+     */
     public final int getPp() {
-        return Pp;
+        return pp;
     }
-    public final void setPp(final int pp) {
-        Pp = pp;
+
+    /**
+     * @param thepp
+     */
+    public final void setPp(final int thepp) {
+        this.pp = thepp;
     }
+
+    /**
+     * @return puissance
+     */
     public final int getPuissance() {
-        return Puissance;
+        return puissance;
     }
+
+    /**
+     * @param puissance
+     */
     public final void setPuissance(final int puissance) {
-        Puissance = puissance;
+        this.puissance = puissance;
     }
+
+    /**
+     * @return precis
+     */
     public final int getPrecision() {
-        return Precis;
+        return precis;
     }
+
+    /**
+     * @param precision
+     */
     public final void setPrecision(final int precision) {
-        Precis = precision;
+        precis = precision;
     }
     @Override
     public final String toString() {
         return "Attaque [NomAttaque=" + nomAttaque + ", TypeAttaque="
-                + TypeAttaque + ", Pp=" + Pp + ", Puissance=" + Puissance
-                + ", Precision=" + Precis + "]";
+                + typeAttaque + ", Pp=" + pp + ", Puissance=" + puissance
+                + ", Precision=" + precis + "]";
     }
     @Override
     public final int hashCode() {
@@ -80,13 +188,13 @@ public class Attaque {
         } else {
             result = prime * result + nomAttaque.hashCode();
         }
-        result = prime * result + Pp;
-        result = prime * result + Precis;
-        result = prime * result + Puissance;
-        if (TypeAttaque == null) {
+        result = prime * result + pp;
+        result = prime * result + precis;
+        result = prime * result + puissance;
+        if (typeAttaque == null) {
             result = prime * result;
         } else {
-            result = prime * result + TypeAttaque.hashCode();
+            result = prime * result + typeAttaque.hashCode();
         }
         return result;
     }
@@ -109,20 +217,20 @@ public class Attaque {
         } else if (!nomAttaque.equals(other.nomAttaque)) {
             return false;
         }
-        if (Pp != other.Pp) {
+        if (pp != other.pp) {
             return false;
         }
-        if (Precis != other.Precis) {
+        if (precis != other.precis) {
             return false;
         }
-        if (Puissance != other.Puissance) {
+        if (puissance != other.puissance) {
             return false;
         }
-        if (TypeAttaque == null) {
-            if (other.TypeAttaque != null) {
+        if (typeAttaque == null) {
+            if (other.typeAttaque != null) {
                 return false;
             }
-        } else if (!TypeAttaque.equals(other.TypeAttaque)) {
+        } else if (!typeAttaque.equals(other.typeAttaque)) {
             return false;
         }
         return true;

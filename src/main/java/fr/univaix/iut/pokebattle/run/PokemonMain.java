@@ -19,7 +19,7 @@ public class PokemonMain {
     public static void main(String[] args) {
         try {
             EntityManagerFactory entityManagerFactory = Persistence.
-                    createEntityManagerFactory("pokebattlePUTest");
+                    createEntityManagerFactory("pokebattlePU");
             EntityManager entityManager = entityManagerFactory.createEntityManager();
             BotRunner.runBot(new PokeBot(entityManager), "twitter4j.properties");
             Main.createDatabase();

@@ -4,12 +4,20 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import fr.univaix.iut.pokebattle.DAOPokemonJPA;
+import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.bot.Bot;
 import fr.univaix.iut.pokebattle.tuse.Credentials;
 import fr.univaix.iut.pokebattle.tuse.TwitterUserStreamEasy;
 import fr.univaix.iut.pokebattle.tuse.UserStreamAdapter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
@@ -21,6 +29,11 @@ public class TwitterUserStreamEasyBuilder {
     private Credentials credentials;
     private Twitter twitter;
     private Bot bot;
+    
+    private EntityManagerFactory emf;
+    private EntityManager em;
+    private Pokemon poke;
+    private DAOPokemonJPA dao;
 
     public TwitterUserStreamEasyBuilder(final Credentials credentials,
             final Twitter twitter, final Bot bot) {
@@ -50,6 +63,8 @@ public class TwitterUserStreamEasyBuilder {
             LOGGER.info("Ignored status change");
             return;
         }
+         
+
 
         String response = bot.ask(new Tweet(status.getUser()
                 .getScreenName(), status.getText()));
@@ -57,6 +72,16 @@ public class TwitterUserStreamEasyBuilder {
         if (response != null) {
             Date dateTweet = new Date();
             Calendar calendar = GregorianCalendar.getInstance();
+            
+            emf = Persistence.
+            createEntityManagerFactory("pokebattlePU");
+            em = emf.createEntityManager();
+            poke = new Pokemon();
+            dao = new DAOPokemonJPA(em);
+            
+            poke = dao.getById("AboHotelBis");
+            
+            twitter.updateProfile(null, "twitter.com/AboHotelBis", "Route 32, Johto","#pokebattle - #pokemon Owner : @" + poke.getOwner());
 
             calendar.setTime(dateTweet);;
             twitter.updateStatus(response + " // à "

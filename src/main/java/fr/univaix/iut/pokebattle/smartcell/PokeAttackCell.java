@@ -62,7 +62,7 @@ public class PokeAttackCell implements SmartCell {
                 result += " @";
                 result += question.getScreenName();
                 return result;
-            } else if (!pokemon.isAttackOf(question.getHashTag(1))) {
+            } else if (question.getHashTag(0).equals("attack") && !pokemon.isAttackOf(question.getHashTag(1))) {
                 return "Je ne connais pas cette attaque";
             }
             return null;

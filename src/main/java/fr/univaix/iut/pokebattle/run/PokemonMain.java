@@ -1,5 +1,10 @@
 package fr.univaix.iut.pokebattle.run;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -16,12 +21,29 @@ public class PokemonMain {
 
     private PokemonMain() { }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException {
         try {
-            EntityManagerFactory entityManagerFactory = Persistence.
+            String databaseUrl = System.getenv("DATABASE_URL");
+            URI dbUri = new URI(databaseUrl);
+            String username = dbUri.getUserInfo().split(":")[0];
+            String password = dbUri.getUserInfo().split(":")[1];
+            String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath() + "?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory";
+            
+            Map<String, String> props = new HashMap<String, String>();
+            props.put("javax.persistence.jdbc.driver", "org.postgresql.Driver");
+            props.put("eclipselink.target-database", "PostgreSQL");
+            props.put("javax.persistence.jdbc.url", dbUrl);
+            props.put("javax.persistence.jdbc.user", username);
+            props.put("javax.persistence.jdbc.password", password);
+            
+            EntityManagerFactory emf = Persistence.createEntityManagerFactory("pokebattlePU", props);
+            EntityManager em = emf.createEntityManager();
+            
+            /**EntityManagerFactory entityManagerFactory = Persistence.
                     createEntityManagerFactory("pokebattlePU");
-            EntityManager entityManager = entityManagerFactory.createEntityManager();
-            BotRunner.runBot(new PokeBot(entityManager), "twitter4j.properties");
+            EntityManager entityManager = entityManagerFactory.createEntityManager();**/
+            
+            BotRunner.runBot(new PokeBot(em), "twitter4j.properties");
             Main.createDatabase();
         } catch (TUSEException e) {
             LOGGER.error("Erreur sérieuse dans le BotRunner", e);

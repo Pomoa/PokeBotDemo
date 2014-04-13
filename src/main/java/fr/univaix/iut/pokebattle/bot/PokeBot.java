@@ -11,10 +11,12 @@ import javax.persistence.Persistence;
 
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
+import fr.univaix.iut.pokebattle.smartcell.AskAttackSpecificationsCell;
 import fr.univaix.iut.pokebattle.smartcell.AskSpecificationsCell;
 import fr.univaix.iut.pokebattle.smartcell.CatchPokemonCell;
 import fr.univaix.iut.pokebattle.smartcell.HelloCell;
 import fr.univaix.iut.pokebattle.smartcell.OwnerCell;
+import fr.univaix.iut.pokebattle.smartcell.PokeAttackCell;
 import fr.univaix.iut.pokebattle.smartcell.SmartCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
@@ -31,8 +33,10 @@ public class PokeBot implements Bot {
         this.em = enma;
 
         smartCells = new SmartCell[] {
+                new PokeAttackCell(em),
         		new CatchPokemonCell(em),
         		new AskSpecificationsCell(em),
+        		new AskAttackSpecificationsCell(em),
                 new OwnerCell(em),
                 new HelloCell(em)
         };

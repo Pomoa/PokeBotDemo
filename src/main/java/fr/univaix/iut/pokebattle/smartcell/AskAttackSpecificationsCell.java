@@ -25,6 +25,10 @@ public class AskAttackSpecificationsCell implements SmartCell {
         
 
         
+        if (question.getHashTagList().size() != 3){       
+            return null;
+        }
+        
         String attaque = question.getHashTag(2).toUpperCase();
         int i = 0;
         

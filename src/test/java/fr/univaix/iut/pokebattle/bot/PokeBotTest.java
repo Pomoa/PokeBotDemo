@@ -9,6 +9,7 @@ import javax.persistence.Persistence;
 import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
+import fr.univaix.iut.pokebattle.smartcell.CatchPokemonCell;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
 import org.dbunit.database.DatabaseConnection;
@@ -16,6 +17,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.dbunit.operation.DatabaseOperation;
 import org.eclipse.persistence.internal.jpa.EntityManagerImpl;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -31,14 +33,15 @@ import static org.junit.Assert.assertEquals;
 public class PokeBotTest {
 
 
-	private static EntityManager entityManager;
+    private static EntityManager entityManager;
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
-    private static EntityManagerFactory entityManagerFactory;    
-    private DAOPokemon dao = new DAOPokemonJPA(entityManager);
+    private static EntityManagerFactory entityManagerFactory;
+    private DAOPokemon dao;
 
-    @BeforeClass
-    public static void initTestFixture() throws Exception {
+    PokeBot pokeBot;
+    @Before
+    public final void initTestFixture() throws Exception {
         // Get the entity manager for the tests.
         // Get the entity manager for the tests.
         entityManagerFactory = Persistence.
@@ -46,29 +49,23 @@ public class PokeBotTest {
         entityManager = entityManagerFactory.createEntityManager();
 
         Connection connection = ((EntityManagerImpl)
-                (entityManager.getDelegate())).getServerSession().
-                getAccessor().getConnection();
-
+                (entityManager.getDelegate())).getServerSession()
+                .getAccessor().getConnection();
         dbUnitConnection = new DatabaseConnection(connection);
         //Loads the data set from a file
         dataset = new FlatXmlDataSetBuilder().build(Thread.currentThread()
                 .getContextClassLoader()
                 .getResourceAsStream("pokemonDataset.xml"));
+        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
+        dao = new DAOPokemonJPA(entityManager);
+        pokeBot = new PokeBot(entityManager);
     }
 
-    @AfterClass
-    public static void finishTestFixture() throws Exception {
+    @After
+    public final void finishTestFixture() throws Exception {
         entityManager.close();
         entityManagerFactory.close();
     }
-
-    @Before
-    public void setUp() throws Exception {
-        //Clean the data from previous test and insert new data test.
-        DatabaseOperation.CLEAN_INSERT.execute(dbUnitConnection, dataset);
-    }
-
-    PokeBot pokeBot = new PokeBot(entityManager);
 
 
     @Test
@@ -102,5 +99,115 @@ public class PokeBotTest {
         assertEquals("@Tristan I don't understand your question.",
                 pokeBot.ask(new Tweet("Tristan", "This is not a question")));
 
+    }
+    
+    
+    @Test
+    public final void testAskPp() {
+        assertEquals("@CaptainObvious #statAttack #PP de #Ligotage = 20.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #PP #Ligotage")));
+    }
+    
+    @Test
+    public final void testAskPuissance() {
+        assertEquals("@CaptainObvious #statAttack #Puissance de #Ligotage = 15.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #Puissance #Ligotage")));
+    }
+    
+    @Test
+    public final void testAskPrécision() {
+        assertEquals("@CaptainObvious #statAttack #Précision de #Ligotage = 85.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #Précision #Ligotage")));
+    }
+    
+    @Test
+    public final void testAskPpGrozYeux() {
+        assertEquals("@CaptainObvious #statAttack #PP de #GrozYeux = 30.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #PP #GrozYeux")));
+    }
+    
+    @Test
+    public final void testAskPuissanceGrozYeux() {
+        assertEquals("@CaptainObvious #statAttack #Puissance de #GrozYeux = 0.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #Puissance #GrozYeux")));
+    }
+    
+    @Test
+    public final void testAskPrécisionGrozYeux() {
+        assertEquals("@CaptainObvious #statAttack #Précision de #GrozYeux = 100.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #Précision #GrozYeux")));
+    }
+    
+    @Test
+    public final void testAskNoAttaque() {
+        assertEquals("@CaptainObvious I don't know this attack.", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #StatAttack #Précision #DardVenin")));
+    }
+    
+    @Test
+    public final void testCaptureAboHotelBisSuccess()
+            throws CloneNotSupportedException {
+        assertEquals("@CaptainObvious You are now my owner.",
+                pokeBot.ask(new Tweet("CaptainObvious",
+                        "@AboHotelBis pokeball !")));
+    }
+
+    @Test
+    public final void testCaptureAboHotelBisFail()
+            throws CloneNotSupportedException {
+        Pokemon abo = new Pokemon();
+        abo = dao.getById("AboHotelBis");
+        abo.setOwner("Tristan");
+        dao.insert(abo);
+        assertEquals("@CaptainObvious Sorry but my owner is @Tristan.",
+                pokeBot.ask(new Tweet("CaptainObvious",
+                "@AboHotelBis pokeball !")));
+    }
+    
+    @Test
+    public final void testAskLevel() {
+        assertEquals("@CaptainObvious #level = 1", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #stat #level")));
+    }
+
+
+
+
+    @Test
+    public final void testAskPV() {
+        assertEquals("@CaptainObvious #PV = 30/30", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #stat #PV")));
+    }
+
+
+    @Test
+    public final void testAskXP() {
+        assertEquals("@CaptainObvious #XP = 0", pokeBot.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #stat #XP")));
+    }
+    
+    @Test
+    public final void testNotOwner() {
+        Pokemon poke = new Pokemon();
+        Tweet tweet = new Tweet("nedseb",
+                "@abohotelbis #attack #ligotage @pika");
+        assertEquals("@nedseb Sorry, you're not my owner. My owner is "
+                     + poke.getOwner(), pokeBot.ask(tweet));
+    }
+
+    @Test
+    public final void testNotOwnerNotAnAttack() {
+        Tweet tweet = new Tweet("nedseb", "@abohotelbis #coucou");
+        assertEquals("@nedseb I don't understand your question.", pokeBot.ask(
+                tweet));
+    }
+
+
+    @Test
+    public final void testDontKnowAttack() {
+        Pokemon poke = new Pokemon();
+        Tweet tweet = new Tweet(poke.getOwner(),
+                "@abohotelbis #attack #explosion @pika");
+        assertEquals("Je ne connais pas cette attaque", pokeBot.ask(tweet));
     }
 }

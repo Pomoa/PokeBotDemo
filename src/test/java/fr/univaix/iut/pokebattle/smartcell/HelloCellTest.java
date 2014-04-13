@@ -18,6 +18,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import fr.univaix.iut.pokebattle.DAOPokemon;
 import fr.univaix.iut.pokebattle.bot.PokeBot;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
 
@@ -27,6 +28,7 @@ public class HelloCellTest {
     private static FlatXmlDataSet dataset;
     private static DatabaseConnection dbUnitConnection;
     private static EntityManagerFactory entityManagerFactory;
+    
 
     @BeforeClass
     public static void initTestFixture() throws Exception {
@@ -35,6 +37,8 @@ public class HelloCellTest {
         entityManagerFactory = Persistence.
                 createEntityManagerFactory("pokebattlePUTest");
         entityManager = entityManagerFactory.createEntityManager();
+        
+        
 
         Connection connection = ((EntityManagerImpl)
                 (entityManager.getDelegate())).getServerSession()

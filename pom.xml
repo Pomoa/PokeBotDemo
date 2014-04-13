@@ -87,6 +87,12 @@
             <artifactId>tuse-core</artifactId>
             <version>0.0.2-SNAPSHOT</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>postgresql</groupId>
+		    <artifactId>postgresql</artifactId>
+		    <version>9.0-801.jdbc4</version>
+		</dependency>
     </dependencies>
 
     <repositories>

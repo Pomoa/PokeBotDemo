@@ -83,7 +83,7 @@ public class PokeAttackCellTest {
     public final void testNotOwner() {
         Tweet tweet = new Tweet("nedseb",
                 "@abohotelbis #attack #ligotage @pika");
-        assertEquals("Sorry, you're not my owner. My owner is "
+        assertEquals("@nedseb Sorry, you're not my owner. My owner is "
                      + poke.getOwner(), cell.ask(tweet));
     }
 

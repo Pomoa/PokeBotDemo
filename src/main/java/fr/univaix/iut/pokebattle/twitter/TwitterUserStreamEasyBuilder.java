@@ -81,7 +81,7 @@ public class TwitterUserStreamEasyBuilder {
             
             poke = dao.getById("AboHotelBis");
             
-            twitter.updateProfile(null, "twitter.com/AboHotelBis", "Route 32, Johto","#pokebattle - #pokemon Owner : @" + poke.getOwner());
+            twitter.updateProfile(null, "twitter.com/AboHotelBis", "Route 32, Johto","#pokebattle Level :" + poke.getLevel() + "Owner : @" + poke.getOwner());
 
             calendar.setTime(dateTweet);;
             twitter.updateStatus(response + " // à "

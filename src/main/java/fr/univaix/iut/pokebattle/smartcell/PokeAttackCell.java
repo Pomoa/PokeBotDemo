@@ -1,6 +1,9 @@
 package fr.univaix.iut.pokebattle.smartcell;
 
+
+
 import javax.persistence.EntityManager;
+
 import fr.univaix.iut.pokebattle.DAOPokemonJPA;
 import fr.univaix.iut.pokebattle.Pokemon;
 import fr.univaix.iut.pokebattle.twitter.Tweet;
@@ -17,14 +20,18 @@ public class PokeAttackCell implements SmartCell {
         DAOPokemonJPA daopok = new DAOPokemonJPA(em);
         Pokemon pokemon = new Pokemon();
         pokemon = daopok.getById("AboHotelBis");
+        
+           
+        
         if (question.getHashTagList().size() < 2) {
             return null;
         }
         if (pokemon.getOwner() != question.getScreenName()
                 && question.getHashTag(0).equals("attack")) {
-            return "Sorry, you're not my owner. My owner is "
+            return "@" +question.getScreenName() + " Sorry, you're not my owner. My owner is "
                 + pokemon.getOwner();
-        } else {
+        }
+        else {
             String result = "@";
             if (question.getHashTag(0).equals("attack")
                     && pokemon.isAttackOf(question.getHashTag(1))) {

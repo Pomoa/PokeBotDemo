@@ -64,72 +64,22 @@ public class AskSpecificationsTest {
     @Test
     public final void testAskLevel() {
         assertEquals("@CaptainObvious #level = 1", cell.ask(new Tweet(
-                "CaptainObvious", "#STAT #LEVEL")));
+                "CaptainObvious", "@AboHotelBis #stat #level")));
     }
 
-    @Test
-    public final void testAskLevelColle() {
-        assertEquals("@CaptainObvious #level = 1", cell.ask(new Tweet(
-                "CaptainObvious", "#STAT#LEVEL")));
-    }
 
-    @Test
-    public final void testAskLevelEspace() {
-        assertEquals("@CaptainObvious #level = 1", cell.ask(new Tweet(
-                "CaptainObvious", " #STAT #LEVEL")));
-    }
 
-    @Test
-    public final void testAskLevelEspaceColle() {
-        assertEquals("@CaptainObvious #level = 1", cell.ask(new Tweet(
-                "CaptainObvious", " #Stat#LEVEL")));
-    }
 
     @Test
     public final void testAskPV() {
-        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
-                "CaptainObvious", "#STAT #PV")));
+        assertEquals("@CaptainObvious #PV = 30/30", cell.ask(new Tweet(
+                "CaptainObvious", "@AboHotelBis #stat #PV")));
     }
 
-    @Test
-    public final void testAskPVColle() {
-        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
-                "CaptainObvious", "#STAT#PV")));
-    }
-
-    @Test
-    public final void testAskPVEspace() {
-        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
-                "CaptainObvious", " #STAT #PV")));
-    }
-
-    @Test
-    public final void testAskPVEspaceColle() {
-        assertEquals("@CaptainObvious #PV = 0/100", cell.ask(new Tweet(
-                "CaptainObvious", " #STAT#PV")));
-    }
 
     @Test
     public final void testAskXP() {
         assertEquals("@CaptainObvious #XP = 0", cell.ask(new Tweet(
-                "CaptainObvious", "#STAT #XP")));
-    }
-
-    @Test
-    public final void testAskXPColle() {
-        assertEquals("@CaptainObvious #XP = 0", cell.ask(new Tweet(
-                "CaptainObvious", "#STAT#XP")));
-    }
-
-    @Test
-    public final void testAskXPEspace() {
-        assertEquals("@CaptainObvious #XP = 0", cell.ask(new Tweet(
-                "CaptainObvious", " #STAT #XP")));
-    }
-
-    @Test
-    public final void testAskXPEspaceColle() {
-        assertEquals("@CaptainObvious #XP = 0", cell.ask(new Tweet(
-                "CaptainObvious", " #STAT#XP")));
+                "CaptainObvious", "@AboHotelBis #stat #XP")));
     }
 }

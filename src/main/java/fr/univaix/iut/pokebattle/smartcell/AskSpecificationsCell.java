@@ -38,30 +38,21 @@ public class AskSpecificationsCell implements SmartCell {
 
 
     public final boolean containsLevel(final String asking) {
-        if (asking.contains("#STAT #LEVEL")
-            || asking.contains("#STAT#LEVEL")
-            || asking.contains(" #STAT#LEVEL")
-            || asking.contains(" #STAT #LEVEL")) {
+        if (asking.contains("#STAT") && asking.contains("#LEVEL")) {
             return true;
         }
         return false;
     }
 
     public final boolean containsPV(final String asking) {
-        if (asking.contains("#STAT #PV")
-            || asking.contains("#STAT#PV")
-            || asking.contains(" #STAT#PV")
-            || asking.contains(" #STAT #PV")) {
+        if (asking.contains("#STAT") && asking.contains("#PV")) {
             return true;
         }
         return false;
     }
 
     public final boolean containsXP(final String asking) {
-        if (asking.contains("#STAT #XP")
-            || asking.contains("#STAT#XP")
-            || asking.contains(" #STAT#XP")
-            || asking.contains(" #STAT #XP")) {
+        if (asking.contains("#STAT") && asking.contains("#XP")) {
             return true;
         }
         return false;
